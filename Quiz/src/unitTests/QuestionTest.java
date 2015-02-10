@@ -2,7 +2,6 @@ package unitTests;
 
 import static org.junit.Assert.*;
 import quiz.*;
-
 import org.junit.*;
 
 public class QuestionTest {
