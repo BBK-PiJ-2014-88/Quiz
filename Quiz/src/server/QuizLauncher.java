@@ -13,6 +13,7 @@ public class QuizLauncher {
 	public void launch(){
 		HomePageGui homePage = new HomePageGui();
 		homePage.launch();
+		/*
 		try {
 			Registry reg = LocateRegistry.createRegistry(1099);
 			reg.bind("quizServer", new QuizServer());
@@ -20,6 +21,7 @@ public class QuizLauncher {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		*/
 		//set up RMI
 	}
 

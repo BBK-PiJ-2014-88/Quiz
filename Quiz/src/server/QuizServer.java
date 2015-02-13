@@ -35,6 +35,9 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	public void launch(){
 		
 	}
+	
+	//the following methods should actually return boolean values. therefore when clients call them, 
+	//they have a way of knowing they have been successful
 	public void addQuiz(Quiz quizToAdd, int id){
 		
 	}
