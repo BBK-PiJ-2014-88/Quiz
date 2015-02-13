@@ -8,7 +8,7 @@ public class InsertQuizNameGui {
 		new InsertQuizNameGui().launch();
 	}
 	public void launch(){
-		frame = new JFrame("Quiz Set up: Naming Quiz");
+		frame = new JFrame("Naming Quiz");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
 		frame.setVisible(true);;
