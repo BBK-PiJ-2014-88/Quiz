@@ -29,25 +29,31 @@ public class HomePage {
 		label = new JLabel("Welcome to the Incredible RMI Quiz!");
 		label.setFont(bigFont);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
+		label.setForeground(Color.RED);
 		
-		makeQuizButton = new JButton("Click here to make a Quiz");
-		playQuizButton = new JButton("Click here to play a Quiz");
+		makeQuizButton = new JButton("Click here to make a Quiz!");
+		playQuizButton = new JButton("Click here to play a Quiz!");
 		PlayQuizButtonListener playQuizListener = new PlayQuizButtonListener();
 		MakeQuizButtonListener makeQuizListener = new MakeQuizButtonListener();
 		makeQuizButton.addActionListener(makeQuizListener);
 		playQuizButton.addActionListener(playQuizListener);
 		makeQuizButton.setFont(mediumFont);
 		playQuizButton.setFont(mediumFont);
+		makeQuizButton.setForeground(Color.RED);
+		playQuizButton.setForeground(Color.RED);
 		
 		panel.add(makeQuizButton);
 		panel.add(playQuizButton);
 		panel.setAlignmentY(SwingConstants.CENTER);
+		panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 		
 		imagePanel.setAlignmentY(200);
 		
 		frame.getContentPane().add(BorderLayout.SOUTH,label);
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
 		frame.getContentPane().add(BorderLayout.CENTER, imagePanel);
+		
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
