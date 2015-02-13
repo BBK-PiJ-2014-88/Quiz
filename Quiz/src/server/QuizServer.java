@@ -46,7 +46,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	}
 	
 	
-	public void flush(){
+	private void flush(){
 		File storageFile = new File("QuizStorage.txt");
 		if (storageFile.exists()){
 			storageFile.delete();

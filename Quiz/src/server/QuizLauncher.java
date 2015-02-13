@@ -1,5 +1,8 @@
 package server;
 
+import java.rmi.RemoteException;
+import java.rmi.registry.*;
+
 import gui.*;
 
 public class QuizLauncher {
@@ -10,6 +13,13 @@ public class QuizLauncher {
 	public void launch(){
 		HomePageGui homePage = new HomePageGui();
 		homePage.launch();
+		try {
+			Registry reg = LocateRegistry.createRegistry(1099);
+			reg.bind("quizServer", new QuizServer());
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		//set up RMI
 	}
 
