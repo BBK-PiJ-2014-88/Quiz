@@ -9,6 +9,8 @@ public class HomePage {
 	private JButton makeQuizButton;
 	private JButton playQuizButton;
 	private JPanel panel;
+	private JLabel label;
+	
 	public static void main(String[] args) {
 		new HomePage().launch();
 	}
@@ -16,6 +18,7 @@ public class HomePage {
 		 
 		frame = new JFrame();
 		panel = new JPanel();
+		label = new JLabel("Welcome to the Incredible RMI Quiz!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeQuizButton = new JButton("Click here to make a Quiz");
 		playQuizButton = new JButton("Click here to play a Quiz");
@@ -26,9 +29,10 @@ public class HomePage {
 		
 		makeQuizButton.addActionListener(makeQuizListener);
 		playQuizButton.addActionListener(playQuizListener);
+		frame.getContentPane().add(label);
 		//frame.getContentPane().add(BorderLayout.NORTH, makeQuizButton);
 		//frame.getContentPane().add(BorderLayout.SOUTH, playQuizButton);
-		frame.getContentPane().add(panel);
+		frame.getContentPane().add(BorderLayout.NORTH, panel);
 		frame.setSize(500,500);
 		frame.setVisible(true);
 	}
