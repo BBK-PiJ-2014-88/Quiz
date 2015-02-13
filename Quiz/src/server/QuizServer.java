@@ -31,6 +31,17 @@ public class QuizServer {
 	public void launch(){
 		
 	}
+	public void addQuiz(Quiz quizToAdd, int id){
+		
+	}
+	public Quiz getQuiz(int id){
+		return null;
+	}
+	public void deleteQuiz(int id){
+		
+	}
+	
+	
 	
 	public void flush(){
 		File storageFile = new File("QuizStorage.txt");
