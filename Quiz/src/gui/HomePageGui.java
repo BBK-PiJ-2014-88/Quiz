@@ -28,6 +28,7 @@ public class HomePageGui {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
 		label.setForeground(Color.RED);
+
 		
 		makeQuizButton = new JButton("Click here to make a Quiz!");
 		playQuizButton = new JButton("Click here to play a Quiz!");
@@ -39,6 +40,8 @@ public class HomePageGui {
 		playQuizButton.setFont(mediumFont);
 		makeQuizButton.setForeground(Color.RED);
 		playQuizButton.setForeground(Color.RED);
+		makeQuizButton.setBackground(Color.YELLOW);
+		playQuizButton.setBackground(Color.YELLOW);
 		
 		panel.add(makeQuizButton);
 		panel.add(playQuizButton);
