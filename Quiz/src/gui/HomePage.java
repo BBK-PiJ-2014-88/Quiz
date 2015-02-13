@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 public class HomePage {
-
 	public static void main(String[] args) {
 		new HomePage().launch();
 	}
