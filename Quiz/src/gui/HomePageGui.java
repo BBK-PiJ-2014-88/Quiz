@@ -8,7 +8,7 @@ import java.awt.Image;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class HomePage {
+public class HomePageGui {
 	private JFrame frame;
 	private JButton makeQuizButton;
 	private JButton playQuizButton;
@@ -17,12 +17,12 @@ public class HomePage {
 	private MyImagePanel imagePanel;
 	
 	public static void main(String[] args) {
-		new HomePage().launch();
+		new HomePageGui().launch();
 	}
 	public void launch(){
 		Font bigFont = new Font("serif", Font.BOLD, 28);
 		Font mediumFont = new Font("serif", Font.BOLD, 20);
-		frame = new JFrame();
+		frame = new JFrame("HomePage");
 		panel = new JPanel();
 		imagePanel = new MyImagePanel();
 		
@@ -65,11 +65,13 @@ public class HomePage {
 	class PlayQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			playQuizButton.setText("I've been clicked");
+			//create playQuiz Client
 		}
 	}
 	class MakeQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			makeQuizButton.setText("I've been clicked");
+			//create makeQuiz Client
 		}
 	}
 
