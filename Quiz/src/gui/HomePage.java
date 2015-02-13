@@ -1,7 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.*;
+
 import java.awt.event.*;
 
 public class HomePage {
@@ -10,30 +15,40 @@ public class HomePage {
 	private JButton playQuizButton;
 	private JPanel panel;
 	private JLabel label;
+	private MyDrawPanel imagePanel;
 	
 	public static void main(String[] args) {
 		new HomePage().launch();
 	}
 	public void launch(){
-		 
+		Font bigFont = new Font("serif", Font.BOLD, 28);
+		Font mediumFont = new Font("serif", Font.BOLD, 20);
 		frame = new JFrame();
 		panel = new JPanel();
+		imagePanel = new MyDrawPanel();
+		
 		label = new JLabel("Welcome to the Incredible RMI Quiz!");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		label.setFont(bigFont);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		makeQuizButton = new JButton("Click here to make a Quiz");
 		playQuizButton = new JButton("Click here to play a Quiz");
 		PlayQuizButtonListener playQuizListener = new PlayQuizButtonListener();
 		MakeQuizButtonListener makeQuizListener = new MakeQuizButtonListener();
-		panel.add(BorderLayout.NORTH, makeQuizButton);
-		panel.add(BorderLayout.SOUTH, playQuizButton);
-		
 		makeQuizButton.addActionListener(makeQuizListener);
 		playQuizButton.addActionListener(playQuizListener);
-		frame.getContentPane().add(label);
-		//frame.getContentPane().add(BorderLayout.NORTH, makeQuizButton);
-		//frame.getContentPane().add(BorderLayout.SOUTH, playQuizButton);
+		makeQuizButton.setFont(mediumFont);
+		playQuizButton.setFont(mediumFont);
+		
+		panel.add(makeQuizButton);
+		panel.add(playQuizButton);
+		panel.setAlignmentY(SwingConstants.CENTER);
+		
+		frame.getContentPane().add(BorderLayout.CENTER,label);
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
-		frame.setSize(500,500);
+		frame.getContentPane().add(BorderLayout.SOUTH, imagePanel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600,600);
 		frame.setVisible(true);
 	}
 	
@@ -47,5 +62,12 @@ public class HomePage {
 			makeQuizButton.setText("I've been clicked");
 		}
 	}
+	class MyDrawPanel extends JPanel{
+		public void drawComponent(Graphics g){
+			Image image = new ImageIcon(getClass().getResource("quizImage.jpg")).getImage();
+			g.drawImage(image, 3,4, this);
+		}
+	}
+	
 
 }
