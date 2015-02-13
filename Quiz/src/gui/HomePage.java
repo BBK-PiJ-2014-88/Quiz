@@ -5,12 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-
-
-
-
 import javax.swing.*;
-
 import java.awt.event.*;
 
 public class HomePage {
@@ -48,11 +43,13 @@ public class HomePage {
 		panel.add(playQuizButton);
 		panel.setAlignmentY(SwingConstants.CENTER);
 		
+		imagePanel.setAlignmentY(200);
+		
 		frame.getContentPane().add(BorderLayout.SOUTH,label);
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
-		frame.getContentPane().add(imagePanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(BorderLayout.CENTER, imagePanel);
 		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
 		frame.setVisible(true);
 		
@@ -73,8 +70,10 @@ public class HomePage {
 	class MyImagePanel extends JPanel {
 		public void paintComponent(Graphics g){
 			Image image = new ImageIcon(getClass().getResource("quizImage.jpg")).getImage();
-			//Image image = new ImageIcon("quizImage.jpg").getImage();
-			g.drawImage(image, 3,4, this);
+			//2 int variables used for aligning image to the centre of the JPanel
+		    int x = (this.getWidth() - image.getWidth(null)) / 2;
+		    int y = (this.getHeight() - image.getHeight(null)) / 2;			
+			g.drawImage(image, x,y, this);
 		}
 	}
 }
