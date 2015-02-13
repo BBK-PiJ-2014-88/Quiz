@@ -2,8 +2,7 @@ package server;
 
 import java.io.*;
 import java.util.HashMap;
-
-import quiz.Quiz;
+import quiz.*;
 
 /**
  * 
@@ -38,14 +37,17 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	
 	//the following methods should actually return boolean values. therefore when clients call them, 
 	//they have a way of knowing they have been successful
-	public void addQuiz(Quiz quizToAdd, int id){
-		
+	public boolean addQuiz(Quiz quizToAdd, int id){
+		return false;
 	}
 	public Quiz getQuiz(int id){
 		return null;
 	}
-	public void deleteQuiz(int id){
-		
+	public boolean deleteQuiz(int id){
+		return false;
+	}
+	public boolean addPlayerAttempt(PlayerAttempt playerAttempt){
+		return false;
 	}
 	
 	
