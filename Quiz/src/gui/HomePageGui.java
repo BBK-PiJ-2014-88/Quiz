@@ -26,7 +26,7 @@ public class HomePageGui {
 		label = new JLabel("Welcome to the Incredible RMI Quiz!");
 		label.setFont(bigFont);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
+		label.setBorder(BorderFactory.createEmptyBorder(60,60,60,60));
 		label.setForeground(Color.RED);
 
 		
