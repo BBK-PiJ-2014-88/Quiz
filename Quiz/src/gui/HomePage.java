@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class HomePage {
 	public static void main(String[] args) {
@@ -16,6 +17,17 @@ public class HomePage {
 		frame.getContentPane().add(BorderLayout.SOUTH, playQuizButton);
 		frame.setSize(500,500);
 		frame.setVisible(true);
+	}
+	
+	class playQuizButtonAction implements ActionListener{
+		public void actionPerformed(ActionEvent event){
+			
+		}
+	}
+	class makeQuizButtonAction implements ActionListener{
+		public void actionPerformed(ActionEvent event){
+			
+		}
 	}
 
 }
