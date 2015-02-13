@@ -1,9 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+
+
 
 import javax.swing.*;
 
@@ -15,7 +18,7 @@ public class HomePage {
 	private JButton playQuizButton;
 	private JPanel panel;
 	private JLabel label;
-	private MyDrawPanel imagePanel;
+	private MyImagePanel imagePanel;
 	
 	public static void main(String[] args) {
 		new HomePage().launch();
@@ -25,7 +28,7 @@ public class HomePage {
 		Font mediumFont = new Font("serif", Font.BOLD, 20);
 		frame = new JFrame();
 		panel = new JPanel();
-		imagePanel = new MyDrawPanel();
+		imagePanel = new MyImagePanel();
 		
 		label = new JLabel("Welcome to the Incredible RMI Quiz!");
 		label.setFont(bigFont);
@@ -44,12 +47,15 @@ public class HomePage {
 		panel.add(playQuizButton);
 		panel.setAlignmentY(SwingConstants.CENTER);
 		
-		frame.getContentPane().add(BorderLayout.CENTER,label);
+		frame.getContentPane().add(BorderLayout.SOUTH,label);
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
-		frame.getContentPane().add(BorderLayout.SOUTH, imagePanel);
+		frame.getContentPane().add(imagePanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		frame.setSize(600,600);
 		frame.setVisible(true);
+		
+		
 	}
 	
 	class PlayQuizButtonListener implements ActionListener{
@@ -62,12 +68,7 @@ public class HomePage {
 			makeQuizButton.setText("I've been clicked");
 		}
 	}
-	class MyDrawPanel extends JPanel{
-		public void drawComponent(Graphics g){
-			Image image = new ImageIcon(getClass().getResource("quizImage.jpg")).getImage();
-			g.drawImage(image, 3,4, this);
-		}
-	}
+
 	
 
 }
