@@ -16,9 +16,6 @@ public class HomePageGui {
 	private JLabel label;
 	private MyImagePanel imagePanel;
 	
-	public static void main(String[] args) {
-		new HomePageGui().launch();
-	}
 	public void launch(){
 		Font bigFont = new Font("serif", Font.BOLD, 28);
 		Font mediumFont = new Font("serif", Font.BOLD, 20);
