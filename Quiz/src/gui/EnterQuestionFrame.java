@@ -2,17 +2,13 @@ package gui;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
+import client.*;
 
 public class EnterQuestionFrame {
-
+	private SetUpClient client;
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -20,26 +16,12 @@ public class EnterQuestionFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EnterQuestionFrame window = new EnterQuestionFrame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public EnterQuestionFrame() {
+	public EnterQuestionFrame(SetUpClient client) {
+		this.client = client;
 		initialize();
 	}
 
@@ -112,5 +94,7 @@ public class EnterQuestionFrame {
 		JButton btnSaveWholeQuiz = new JButton("Save Whole Quiz");
 		btnSaveWholeQuiz.setBounds(321, 315, 200, 66);
 		frame.getContentPane().add(btnSaveWholeQuiz);
+		
+		frame.setVisible(true);
 	}
 }

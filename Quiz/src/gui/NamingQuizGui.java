@@ -1,40 +1,24 @@
 package gui;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import client.*;
 
 public class NamingQuizGui {
-
+	private SetUpClient client;
 	private JFrame frame;
 	private JTextField textField;
 	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NamingQuizGui window = new NamingQuizGui();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public NamingQuizGui() {
+	public NamingQuizGui(SetUpClient client) {
+		this.client = client;
 		initialize();
 	}
 
@@ -44,7 +28,7 @@ public class NamingQuizGui {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 606, 455);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblPleaseEnterA = new JLabel("Please enter a name\r\n for your Quiz: ");
@@ -63,6 +47,8 @@ public class NamingQuizGui {
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNext.setBounds(336, 303, 200, 50);
 		frame.getContentPane().add(btnNext);
+		
+		frame.setVisible(true);
 		
 	
 	}

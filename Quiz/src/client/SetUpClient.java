@@ -3,7 +3,7 @@ package client;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.*;
-
+import gui.*;
 import server.*;
 
 
@@ -13,6 +13,8 @@ public class SetUpClient {
 	public void launch(){
 		//First the SetUpClient makes a connection with the remote QuizServer object on the registry
 		connectToServer();
+		NamingQuizGui questionNameGui = new NamingQuizGui(this);
+		//EnterQuestionFrame questionNameGui = new EnterQuestionFrame(this);
 	}
 	
 	public boolean connectToServer(){
