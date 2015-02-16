@@ -48,9 +48,6 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	public boolean deleteQuiz(int id){
 		return false;
 	}
-	public boolean addPlayerAttempt(PlayerAttempt playerAttempt){
-		return false;
-	}
 	
 	public int createQuizId(){
 		Set keySet = quizList.keySet();
