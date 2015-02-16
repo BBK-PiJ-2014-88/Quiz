@@ -31,7 +31,10 @@ public class SetUpClient {
 	public void getQuizQuestions(){
 		EnterQuestionFrame enterQuestionGui = new EnterQuestionFrame(this);
 		enterQuestionGui.launch();
-		
+	}
+	
+	public void addQuestionToQuiz(Question questionToAdd){
+		this.newQuiz.addQuestion(questionToAdd);
 	}
 	
 	public boolean connectToServer(){
