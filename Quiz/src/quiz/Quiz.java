@@ -1,9 +1,10 @@
 package quiz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Quiz {
+public class Quiz implements Serializable {
 	String quizName;
 	int quizId;
 	ArrayList<Question> quizQuestions = new ArrayList<Question>();

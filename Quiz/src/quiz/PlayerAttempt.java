@@ -1,6 +1,8 @@
 package quiz;
 
-public class PlayerAttempt implements Comparable {
+import java.io.Serializable;
+
+public class PlayerAttempt implements Comparable, Serializable {
 	private String playerName;
 	private int score;
 	public String printScore(Quiz quiz, int numberOfCorrectAnswers){
