@@ -3,8 +3,12 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.*;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import client.*;
 
 public class EnterQuestionFrame {
@@ -44,6 +48,7 @@ public class EnterQuestionFrame {
 		questionTextField.setBounds(261, 44, 285, 44);
 		frame.getContentPane().add(questionTextField);
 		questionTextField.setColumns(10);
+		questionTextField.setInputVerifier(new CorrectInputCheck());
 		
 		JLabel instructionLabel = new JLabel("Please enter 4 possible answers and select which one is correct: ");
 		instructionLabel.setForeground(Color.RED);
@@ -52,23 +57,28 @@ public class EnterQuestionFrame {
 		frame.getContentPane().add(instructionLabel);
 		
 		answer1TextField = new JTextField();
-		answer1TextField.setBounds(66, 197, 165, 20);
-		frame.getContentPane().add(answer1TextField);
 		answer1TextField.setColumns(10);
+		answer1TextField.setBounds(66, 197, 165, 20);
+		answer1TextField.setInputVerifier(new CorrectInputCheck());
+		frame.getContentPane().add(answer1TextField);
 		
 		answer2TextField = new JTextField();
 		answer2TextField.setColumns(10);
 		answer2TextField.setBounds(316, 197, 165, 20);
+		answer2TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer2TextField);
+		
 		
 		answer3TextField = new JTextField();
 		answer3TextField.setColumns(10);
 		answer3TextField.setBounds(66, 265, 165, 20);
+		answer3TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer3TextField);
 		
 		answer4TextField = new JTextField();
 		answer4TextField.setColumns(10);
 		answer4TextField.setBounds(316, 265, 165, 20);
+		answer4TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer4TextField);
 		
 		JRadioButton answer1RadioButton = new JRadioButton("New radio button");
@@ -95,6 +105,7 @@ public class EnterQuestionFrame {
 		
 		JButton nextQuestionButton = new JButton("Insert Another Question");
 		nextQuestionButton.setBounds(53, 315, 200, 66);
+		nextQuestionButton.addActionListener(new nextQuestionButtonActionListener());
 		frame.getContentPane().add(nextQuestionButton);
 		
 		JButton saveQuizButton = new JButton("Save Whole Quiz");
@@ -104,5 +115,19 @@ public class EnterQuestionFrame {
 
 		
 		frame.setVisible(true);
+	}
+	class nextQuestionButtonActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			
+		}
+		
+	}
+	class CorrectInputCheck extends InputVerifier {
+	    public boolean verify(JComponent input) {
+	        JTextField textField = (JTextField) input;
+	        return (textField.getText()).length() > 0;
+	    }
 	}
 }
