@@ -8,17 +8,25 @@ import server.*;
 
 
 public class SetUpClient {
-
+	private QuizRemoteInterface remoteServerObject; //the remote server object in the registry
+	
 	public void launch(){
+		//First the SetUpClient makes a connection with the remote QuizServer object on the registry
+		connectToServer();
+	}
+	
+	public boolean connectToServer(){
 		try {
 			Registry reg = LocateRegistry.getRegistry("localhost", 1099);
-			QuizRemoteInterface remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
+			remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
 			System.out.println(remoteServerObject.createQuizId());
+			return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 }
