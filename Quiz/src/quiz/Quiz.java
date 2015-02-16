@@ -7,6 +7,7 @@ public class Quiz {
 	int quizId;
 	ArrayList<Question> quizQuestions = new ArrayList<Question>();
 	
+	
 	public Quiz(String name, int Id){
 		this.quizName = name;
 		this.quizId = Id;

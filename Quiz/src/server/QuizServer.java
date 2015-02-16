@@ -2,6 +2,8 @@ package server;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Set;
+
 import quiz.*;
 
 /**
@@ -50,6 +52,20 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		return false;
 	}
 	
+	public int createQuizId(){
+		Set keySet = quizList.keySet();
+		int iD = 1;
+		boolean idFound = false;
+		while (!idFound){
+			if (keySet.contains(iD)){
+				iD++;
+			}
+			else{
+				idFound = true;
+			}
+		}
+		return iD;
+	}
 	
 	private void flush(){
 		File storageFile = new File("QuizStorage.txt");
