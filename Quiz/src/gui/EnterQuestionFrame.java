@@ -106,11 +106,11 @@ public class EnterQuestionFrame {
 		frame.getContentPane().add(radioButton_2);
 		
 		JButton btnSaveQuestionAnd = new JButton("Insert Another Question");
-		btnSaveQuestionAnd.setBounds(66, 315, 200, 66);
+		btnSaveQuestionAnd.setBounds(53, 315, 200, 66);
 		frame.getContentPane().add(btnSaveQuestionAnd);
 		
 		JButton btnSaveWholeQuiz = new JButton("Save Whole Quiz");
-		btnSaveWholeQuiz.setBounds(316, 315, 200, 66);
+		btnSaveWholeQuiz.setBounds(321, 315, 200, 66);
 		frame.getContentPane().add(btnSaveWholeQuiz);
 	}
 }
