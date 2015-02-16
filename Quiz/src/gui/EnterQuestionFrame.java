@@ -48,7 +48,6 @@ public class EnterQuestionFrame {
 		questionTextField.setBounds(261, 44, 285, 44);
 		frame.getContentPane().add(questionTextField);
 		questionTextField.setColumns(10);
-		questionTextField.setInputVerifier(new CorrectInputCheck());
 		
 		JLabel instructionLabel = new JLabel("Please enter 4 possible answers and select which one is correct: ");
 		instructionLabel.setForeground(Color.RED);
@@ -59,41 +58,37 @@ public class EnterQuestionFrame {
 		answer1TextField = new JTextField();
 		answer1TextField.setColumns(10);
 		answer1TextField.setBounds(66, 197, 165, 20);
-		answer1TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer1TextField);
 		
 		answer2TextField = new JTextField();
 		answer2TextField.setColumns(10);
 		answer2TextField.setBounds(316, 197, 165, 20);
-		answer2TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer2TextField);
 		
 		
 		answer3TextField = new JTextField();
 		answer3TextField.setColumns(10);
 		answer3TextField.setBounds(66, 265, 165, 20);
-		answer3TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer3TextField);
 		
 		answer4TextField = new JTextField();
 		answer4TextField.setColumns(10);
 		answer4TextField.setBounds(316, 265, 165, 20);
-		answer4TextField.setInputVerifier(new CorrectInputCheck());
 		frame.getContentPane().add(answer4TextField);
 		
-		JRadioButton answer1RadioButton = new JRadioButton("New radio button");
+		JRadioButton answer1RadioButton = new JRadioButton("0");
 		answer1RadioButton.setBounds(237, 196, 23, 23);
 		frame.getContentPane().add(answer1RadioButton);
 		
-		JRadioButton answer3RadioButton = new JRadioButton("New radio button");
-		answer3RadioButton.setBounds(237, 264, 23, 23);
-		frame.getContentPane().add(answer3RadioButton);
-		
-		JRadioButton answer2RadioButton = new JRadioButton("New radio button");
+		JRadioButton answer2RadioButton = new JRadioButton("1");
 		answer2RadioButton.setBounds(487, 196, 23, 23);
 		frame.getContentPane().add(answer2RadioButton);
 		
-		JRadioButton answer4RadioButton = new JRadioButton("New radio button");
+		JRadioButton answer3RadioButton = new JRadioButton("2");
+		answer3RadioButton.setBounds(237, 264, 23, 23);
+		frame.getContentPane().add(answer3RadioButton);
+		
+		JRadioButton answer4RadioButton = new JRadioButton("3");
 		answer4RadioButton.setBounds(487, 264, 23, 23);
 		frame.getContentPane().add(answer4RadioButton);
 
@@ -119,15 +114,27 @@ public class EnterQuestionFrame {
 	class nextQuestionButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			
+			if (questionTextField.getText().length() == 0){
+				JOptionPane.showMessageDialog(null, "Please enter a question");
+			}
+			else if (!answersInsertedCorrectly()){
+				JOptionPane.showMessageDialog(null, "Please enter 4 possible answers");
+			}
+			else{
+				//client.addQuestionToQuiz();
+			}
 		}
-		
 	}
-	class CorrectInputCheck extends InputVerifier {
-	    public boolean verify(JComponent input) {
-	        JTextField textField = (JTextField) input;
-	        return (textField.getText()).length() > 0;
-	    }
+	public boolean answersInsertedCorrectly(){
+		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField,answer4TextField};
+		for (JTextField answerBox: answerFields){
+			if (answerBox.getText().length() == 0){
+				return false;
+			}
+		}
+		return true;
 	}
+	
+
+	
 }

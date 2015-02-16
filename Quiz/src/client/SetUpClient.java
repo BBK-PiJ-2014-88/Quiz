@@ -34,6 +34,7 @@ public class SetUpClient {
 	}
 	
 	public void addQuestionToQuiz(Question questionToAdd){
+		
 		this.newQuiz.addQuestion(questionToAdd);
 	}
 	
