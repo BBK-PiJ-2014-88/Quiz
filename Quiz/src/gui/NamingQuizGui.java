@@ -66,6 +66,9 @@ public class NamingQuizGui {
 			if ((textField.getText()).length() > 0 ){
 				userEnteredQuizName = textField.getText();
 				client.createQuiz(userEnteredQuizName);
+				frame.setVisible(false);
+				frame.dispose();
+				client.getQuizQuestions();
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "Please enter a Quiz Name");

@@ -21,10 +21,17 @@ public class SetUpClient {
 	public void createQuiz(String quizName){
 		try {
 			newQuiz = new Quiz(quizName, remoteServerObject.createQuizId());
-			System.out.println("Successfully created a quiz");
+			System.out.println("Successfully created a quiz with the name: " + quizName);
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void getQuizQuestions(){
+		EnterQuestionFrame enterQuestionGui = new EnterQuestionFrame(this);
+		enterQuestionGui.launch();
+		
 	}
 	
 	public boolean connectToServer(){

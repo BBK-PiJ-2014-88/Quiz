@@ -22,13 +22,12 @@ public class EnterQuestionFrame {
 	 */
 	public EnterQuestionFrame(SetUpClient client) {
 		this.client = client;
-		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 605, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
