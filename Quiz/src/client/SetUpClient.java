@@ -14,7 +14,11 @@ public class SetUpClient {
 		//First the SetUpClient makes a connection with the remote QuizServer object on the registry
 		connectToServer();
 		NamingQuizGui questionNameGui = new NamingQuizGui(this);
-		//EnterQuestionFrame questionNameGui = new EnterQuestionFrame(this);
+		questionNameGui.launch();
+		while (!questionNameGui.getHasUserEnteredName()){
+			
+		}
+		System.out.println(questionNameGui.getUserEnteredQuizName());
 	}
 	
 	public boolean connectToServer(){

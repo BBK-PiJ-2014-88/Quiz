@@ -6,26 +6,35 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Font;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import client.*;
 
 public class NamingQuizGui {
 	private SetUpClient client;
 	private JFrame frame;
 	private JTextField textField;
-
+	private String userEnteredQuizName;
+	private boolean hasUserEnteredName; 
+	
+	public String getUserEnteredQuizName(){
+		return this.userEnteredQuizName;
+	}
+	public boolean getHasUserEnteredName(){
+		return this.hasUserEnteredName;
+	}
+	
 	/**
 	 * Create the application.
 	 */
 	public NamingQuizGui(SetUpClient client) {
 		this.client = client;
-		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 606, 455);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,7 +50,6 @@ public class NamingQuizGui {
 		textField.setBounds(55, 191, 478, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		textField.setInputVerifier(new CorrectQuizNameVerifier());
 		
 		JButton btnNext = new JButton("NEXT");
 		btnNext.setForeground(Color.RED);
@@ -52,14 +60,20 @@ public class NamingQuizGui {
 		frame.setVisible(true);
 	}
 	
-	class CorrectQuizNameVerifier extends InputVerifier{
 
+	
+	class NextButtonActionListener implements ActionListener{
 		@Override
-		public boolean verify(JComponent input) {
-			JTextField userInput = (JTextField) input;
-			return (userInput.getText()).length() > 0;
+		public void actionPerformed(ActionEvent arg0) {
+			if ((textField.getText()).length() > 0 ){
+				userEnteredQuizName = textField.getText();
+				hasUserEnteredName = true;
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Please enter a Quiz Name");
+			}
 		}
-		
 	}
+
 	
 }
