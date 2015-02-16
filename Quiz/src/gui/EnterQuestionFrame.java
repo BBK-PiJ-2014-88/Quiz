@@ -10,11 +10,11 @@ import client.*;
 public class EnterQuestionFrame {
 	private SetUpClient client;
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField questionTextField;
+	private JTextField answer1TextField;
+	private JTextField answer2TextField;
+	private JTextField answer3TextField;
+	private JTextField answer4TextField;
 
 
 	/**
@@ -26,6 +26,7 @@ public class EnterQuestionFrame {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -33,66 +34,66 @@ public class EnterQuestionFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblPleaseEnterA = new JLabel("Please Enter a Question:");
-		lblPleaseEnterA.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPleaseEnterA.setForeground(Color.RED);
-		lblPleaseEnterA.setBounds(53, 39, 198, 51);
-		frame.getContentPane().add(lblPleaseEnterA);
+		JLabel enterQuestionLabel = new JLabel("Please Enter a Question:");
+		enterQuestionLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		enterQuestionLabel.setForeground(Color.RED);
+		enterQuestionLabel.setBounds(53, 39, 198, 51);
+		frame.getContentPane().add(enterQuestionLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(261, 44, 285, 44);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		questionTextField = new JTextField();
+		questionTextField.setBounds(261, 44, 285, 44);
+		frame.getContentPane().add(questionTextField);
+		questionTextField.setColumns(10);
 		
-		JLabel lblPleaseEnter = new JLabel("Please enter 4 possible answers and select which one is correct: ");
-		lblPleaseEnter.setForeground(Color.RED);
-		lblPleaseEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPleaseEnter.setBounds(52, 114, 469, 34);
-		frame.getContentPane().add(lblPleaseEnter);
+		JLabel instructionLabel = new JLabel("Please enter 4 possible answers and select which one is correct: ");
+		instructionLabel.setForeground(Color.RED);
+		instructionLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		instructionLabel.setBounds(52, 114, 469, 34);
+		frame.getContentPane().add(instructionLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(66, 197, 165, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		answer1TextField = new JTextField();
+		answer1TextField.setBounds(66, 197, 165, 20);
+		frame.getContentPane().add(answer1TextField);
+		answer1TextField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(316, 197, 165, 20);
-		frame.getContentPane().add(textField_2);
+		answer2TextField = new JTextField();
+		answer2TextField.setColumns(10);
+		answer2TextField.setBounds(316, 197, 165, 20);
+		frame.getContentPane().add(answer2TextField);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(66, 265, 165, 20);
-		frame.getContentPane().add(textField_3);
+		answer3TextField = new JTextField();
+		answer3TextField.setColumns(10);
+		answer3TextField.setBounds(66, 265, 165, 20);
+		frame.getContentPane().add(answer3TextField);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(316, 265, 165, 20);
-		frame.getContentPane().add(textField_4);
+		answer4TextField = new JTextField();
+		answer4TextField.setColumns(10);
+		answer4TextField.setBounds(316, 265, 165, 20);
+		frame.getContentPane().add(answer4TextField);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setBounds(237, 196, 23, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton);
+		JRadioButton answer1RadioButton = new JRadioButton("New radio button");
+		answer1RadioButton.setBounds(237, 196, 23, 23);
+		frame.getContentPane().add(answer1RadioButton);
 		
-		JRadioButton radioButton = new JRadioButton("New radio button");
-		radioButton.setBounds(237, 264, 23, 23);
-		frame.getContentPane().add(radioButton);
+		JRadioButton answer3RadioButton = new JRadioButton("New radio button");
+		answer3RadioButton.setBounds(237, 264, 23, 23);
+		frame.getContentPane().add(answer3RadioButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("New radio button");
-		radioButton_1.setBounds(487, 196, 23, 23);
-		frame.getContentPane().add(radioButton_1);
+		JRadioButton answer2RadioButton = new JRadioButton("New radio button");
+		answer2RadioButton.setBounds(487, 196, 23, 23);
+		frame.getContentPane().add(answer2RadioButton);
 		
-		JRadioButton radioButton_2 = new JRadioButton("New radio button");
-		radioButton_2.setBounds(487, 264, 23, 23);
-		frame.getContentPane().add(radioButton_2);
+		JRadioButton answer4RadioButton = new JRadioButton("New radio button");
+		answer4RadioButton.setBounds(487, 264, 23, 23);
+		frame.getContentPane().add(answer4RadioButton);
 		
-		JButton btnSaveQuestionAnd = new JButton("Insert Another Question");
-		btnSaveQuestionAnd.setBounds(53, 315, 200, 66);
-		frame.getContentPane().add(btnSaveQuestionAnd);
+		JButton nextQuestionButton = new JButton("Insert Another Question");
+		nextQuestionButton.setBounds(53, 315, 200, 66);
+		frame.getContentPane().add(nextQuestionButton);
 		
-		JButton btnSaveWholeQuiz = new JButton("Save Whole Quiz");
-		btnSaveWholeQuiz.setBounds(321, 315, 200, 66);
-		frame.getContentPane().add(btnSaveWholeQuiz);
+		JButton saveQuizButton = new JButton("Save Whole Quiz");
+		saveQuizButton.setBounds(321, 315, 200, 66);
+		frame.getContentPane().add(saveQuizButton);
 		
 		frame.setVisible(true);
 	}
