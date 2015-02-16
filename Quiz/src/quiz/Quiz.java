@@ -1,12 +1,13 @@
 package quiz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Quiz {
 	String quizName;
 	int quizId;
 	ArrayList<Question> quizQuestions = new ArrayList<Question>();
-	
+	ArrayList<PlayerAttempt> highScores = new ArrayList<PlayerAttempt>();
 	
 	public Quiz(String name, int Id){
 		this.quizName = name;
@@ -23,6 +24,10 @@ public class Quiz {
 	}
 	public int getQuizId(){
 		return this.quizId;
+	}
+	public void addPlayerAttempt(PlayerAttempt playerAttempt){
+		this.highScores.add(playerAttempt);
+		Collections.sort(highScores);
 	}
 	
 }
