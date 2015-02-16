@@ -111,20 +111,28 @@ public class EnterQuestionFrame {
 		
 		frame.setVisible(true);
 	}
+	
+	public boolean isInputValid(){
+		if (questionTextField.getText().length() == 0){
+			JOptionPane.showMessageDialog(null, "Please enter a question");
+			return false;
+		}
+		else if (!answersInsertedCorrectly()){
+			JOptionPane.showMessageDialog(null, "Please enter 4 possible answers");
+			return false;
+		}
+		return true;
+	}
 	class nextQuestionButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if (questionTextField.getText().length() == 0){
-				JOptionPane.showMessageDialog(null, "Please enter a question");
-			}
-			else if (!answersInsertedCorrectly()){
-				JOptionPane.showMessageDialog(null, "Please enter 4 possible answers");
-			}
-			else{
-				//client.addQuestionToQuiz();
+			if (isInputValid()){
+				String question = questionTextField.getText();
 			}
 		}
 	}
+	
+	
 	public boolean answersInsertedCorrectly(){
 		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField,answer4TextField};
 		for (JTextField answerBox: answerFields){
