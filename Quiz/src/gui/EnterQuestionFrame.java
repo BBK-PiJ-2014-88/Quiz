@@ -31,7 +31,7 @@ public class EnterQuestionFrame {
 	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 605, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel enterQuestionLabel = new JLabel("Please Enter a Question:");
