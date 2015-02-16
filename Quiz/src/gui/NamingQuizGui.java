@@ -1,18 +1,18 @@
 package gui;
 
 import java.awt.EventQueue;
+
 import javax.swing.*;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import client.*;
 
 public class NamingQuizGui {
 	private SetUpClient client;
 	private JFrame frame;
 	private JTextField textField;
-	
-
-
 
 	/**
 	 * Create the application.
@@ -31,16 +31,17 @@ public class NamingQuizGui {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblPleaseEnterA = new JLabel("Please enter a name\r\n for your Quiz: ");
-		lblPleaseEnterA.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPleaseEnterA.setForeground(Color.RED);
-		lblPleaseEnterA.setBounds(32, 72, 418, 116);
-		frame.getContentPane().add(lblPleaseEnterA);
+		JLabel enterNameLabel = new JLabel("Please enter a name\r\n for your Quiz: ");
+		enterNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		enterNameLabel.setForeground(Color.RED);
+		enterNameLabel.setBounds(32, 72, 418, 116);
+		frame.getContentPane().add(enterNameLabel);
 		
 		textField = new JTextField();
 		textField.setBounds(55, 191, 478, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setInputVerifier(new CorrectQuizNameVerifier());
 		
 		JButton btnNext = new JButton("NEXT");
 		btnNext.setForeground(Color.RED);
@@ -49,7 +50,16 @@ public class NamingQuizGui {
 		frame.getContentPane().add(btnNext);
 		
 		frame.setVisible(true);
-		
-	
 	}
+	
+	class CorrectQuizNameVerifier extends InputVerifier{
+
+		@Override
+		public boolean verify(JComponent input) {
+			JTextField userInput = (JTextField) input;
+			return (userInput.getText()).length() > 0;
+		}
+		
+	}
+	
 }
