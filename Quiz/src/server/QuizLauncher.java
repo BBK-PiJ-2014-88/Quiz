@@ -1,5 +1,6 @@
 package server;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.*;
 
@@ -13,16 +14,15 @@ public class QuizLauncher {
 	public void launch(){
 		HomePageGui homePage = new HomePageGui();
 		homePage.launch();
-		/*
+
 		try {
 			Registry reg = LocateRegistry.createRegistry(1099);
-			reg.bind("quizServer", new QuizServer());
-			
+			reg.rebind("quizServer", new QuizServer());
+			System.out.println("Server set up completed");
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		}
-		*/
-		//set up RMI
+			System.out.println("Remote Exception occured");
+		} 
 	}
 
 }

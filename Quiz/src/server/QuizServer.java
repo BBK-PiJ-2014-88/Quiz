@@ -1,6 +1,8 @@
 package server;
 
 import java.io.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -11,11 +13,12 @@ import quiz.*;
  * @author Sergio
  * This is the central Quiz Server
  */
-public class QuizServer {
+public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterface  {
 
 HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	
-	public QuizServer(){
+	public QuizServer() throws RemoteException{
+		super();
 		File storageFile = new File("QuizStorage.txt");
 		if (storageFile.exists()){
 			System.out.println("File exists");
@@ -31,7 +34,13 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	}
 	
 	public static void main(String[] args){
-		new QuizServer().launch();
+		QuizServer launcher = null;
+		try {
+			launcher = new QuizServer();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		launcher.launch();
 	}
 	public void launch(){
 		
