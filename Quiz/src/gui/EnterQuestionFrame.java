@@ -86,6 +86,12 @@ public class EnterQuestionFrame {
 		JRadioButton answer4RadioButton = new JRadioButton("New radio button");
 		answer4RadioButton.setBounds(487, 264, 23, 23);
 		frame.getContentPane().add(answer4RadioButton);
+
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(answer1RadioButton);
+		buttonGroup.add(answer2RadioButton);
+		buttonGroup.add(answer3RadioButton);
+		buttonGroup.add(answer4RadioButton);
 		
 		JButton nextQuestionButton = new JButton("Insert Another Question");
 		nextQuestionButton.setBounds(53, 315, 200, 66);
@@ -94,6 +100,8 @@ public class EnterQuestionFrame {
 		JButton saveQuizButton = new JButton("Save Whole Quiz");
 		saveQuizButton.setBounds(321, 315, 200, 66);
 		frame.getContentPane().add(saveQuizButton);
+		
+
 		
 		frame.setVisible(true);
 	}
