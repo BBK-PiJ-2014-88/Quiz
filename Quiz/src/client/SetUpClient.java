@@ -3,11 +3,13 @@ package client;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.*;
+import javax.swing.JOptionPane;
 import gui.*;
 import server.*;
-
+import quiz.*;
 
 public class SetUpClient {
+	private Quiz newQuiz;
 	private QuizRemoteInterface remoteServerObject; //the remote server object in the registry
 	
 	public void launch(){
@@ -15,10 +17,13 @@ public class SetUpClient {
 		connectToServer();
 		NamingQuizGui questionNameGui = new NamingQuizGui(this);
 		questionNameGui.launch();
-		while (!questionNameGui.getHasUserEnteredName()){
-			
+	}
+	public void createQuiz(String quizName){
+		try {
+			newQuiz = new Quiz(quizName, remoteServerObject.createQuizId());
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
-		System.out.println(questionNameGui.getUserEnteredQuizName());
 	}
 	
 	public boolean connectToServer(){
