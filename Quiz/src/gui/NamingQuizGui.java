@@ -15,14 +15,11 @@ public class NamingQuizGui {
 	private JFrame frame;
 	private JTextField textField;
 	private String userEnteredQuizName;
-	private boolean hasUserEnteredName; 
 	
 	public String getUserEnteredQuizName(){
 		return this.userEnteredQuizName;
 	}
-	public boolean getHasUserEnteredName(){
-		return this.hasUserEnteredName;
-	}
+
 	
 	/**
 	 * Create the application.
@@ -55,6 +52,7 @@ public class NamingQuizGui {
 		btnNext.setForeground(Color.RED);
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNext.setBounds(336, 303, 200, 50);
+		btnNext.addActionListener(new NextButtonActionListener());
 		frame.getContentPane().add(btnNext);
 		
 		frame.setVisible(true);
@@ -67,7 +65,7 @@ public class NamingQuizGui {
 		public void actionPerformed(ActionEvent arg0) {
 			if ((textField.getText()).length() > 0 ){
 				userEnteredQuizName = textField.getText();
-				hasUserEnteredName = true;
+				client.createQuiz(userEnteredQuizName);
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "Please enter a Quiz Name");
