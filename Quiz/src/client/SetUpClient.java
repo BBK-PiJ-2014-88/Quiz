@@ -9,12 +9,6 @@ import server.*;
 
 public class SetUpClient {
 
-	public static void main(String[] args) {
-		new SetUpClient().launch();
-		// TODO Auto-generated method stub
-		//will connect to Server object on registry. 
-		//after making a quiz, will call ServerObject.saveQuiz()
-	}
 	public void launch(){
 		try {
 			Registry reg = LocateRegistry.getRegistry("localhost", 1099);

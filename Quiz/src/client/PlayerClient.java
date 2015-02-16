@@ -1,15 +1,25 @@
 package client;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import server.QuizRemoteInterface;
+
 public class PlayerClient {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//will connect to server in registry 
-		//depending on what the user clicks, will either 
-		//try serverobject.deleteQuiz()
-		// servrObhject.getQuiz()
-		//once have the Quiz. can launch the playQuizGui
-
+	public void launch(){
+		try {
+			Registry reg = LocateRegistry.getRegistry("localhost", 1099);
+			QuizRemoteInterface remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
+			System.out.println(remoteServerObject.createQuizId());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
+	
 
 }

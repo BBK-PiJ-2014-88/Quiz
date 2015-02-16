@@ -5,7 +5,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+
 import javax.swing.*;
+import client.*;
+
 import java.awt.event.*;
 
 public class HomePageGui {
@@ -64,14 +67,15 @@ public class HomePageGui {
 	
 	class PlayQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			playQuizButton.setText("I've been clicked");
-			//create playQuiz Client
+			PlayerClient playQuizClient = new PlayerClient();
+			playQuizClient.launch();
+			
 		}
 	}
 	class MakeQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			makeQuizButton.setText("I've been clicked");
-			//create makeQuiz Client
+			SetUpClient makeQuizClient = new SetUpClient();
+			makeQuizClient.launch();
 		}
 	}
 
