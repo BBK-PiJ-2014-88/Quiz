@@ -30,6 +30,13 @@ public class SetUpClient {
 			e.printStackTrace();
 		}
 	}
+	public void addQuizToServer(){
+		try {
+			remoteServerObject.addQuiz(newQuiz, newQuiz.getQuizId());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void getQuizQuestions(){
 		EnterQuestionFrame enterQuestionGui = new EnterQuestionFrame(this);

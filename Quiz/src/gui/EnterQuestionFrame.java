@@ -151,7 +151,7 @@ public class EnterQuestionFrame {
 		}
 		return false;
 	}
-	public void saveQuiz(){
+	public void saveQuestion(){
 		String question = questionTextField.getText();
 		String[] answers = {answer1TextField.getText(), answer2TextField.getText(),
 				answer3TextField.getText(), answer4TextField.getText()};
@@ -162,11 +162,24 @@ public class EnterQuestionFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isInputValid()){
-				saveQuiz();
+				saveQuestion();
 				frame.setVisible(false);
 				frame.dispose();
 				JOptionPane.showMessageDialog(null, "Successfully entered question");
 				client.getQuizQuestions();
+			}
+		}
+	}
+	class saveQuizButtonActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0){
+			if (isInputValid()){
+				saveQuestion();
+				frame.setVisible(false);
+				frame.dispose();
+				JOptionPane.showMessageDialog(null, "Successfully entered question");
+				client.addQuizToServer();
+				JOptionPane.showMessageDialog(null, "Successfully saved Quiz to Server");
 			}
 		}
 	}
