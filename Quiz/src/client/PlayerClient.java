@@ -15,6 +15,14 @@ public class PlayerClient {
 		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this);
 		selectQuizGui.launch();
 	}
+	/*
+	 * Gets all the Quizzes stored in the Quiz Server and creates a String array
+	 * of Quiz names and their id's to be sent as parameters to the JList in the selectGuizGui
+	 * where the user can select a Quiz
+	 */
+	public String[] getListItems(){
+		
+	}
 	
 
 	public boolean connectToServer(){

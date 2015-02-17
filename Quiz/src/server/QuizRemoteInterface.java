@@ -9,4 +9,5 @@ public interface QuizRemoteInterface extends Remote {
 	public boolean deleteQuiz(int id) throws RemoteException;
 	public Quiz getQuiz(int id) throws RemoteException;
 	public int createQuizId() throws RemoteException;
+	public int getNumberOfQuizzes() throws RemoteException;
 }

@@ -82,6 +82,10 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		return iD;
 	}
 	
+	public int getNumberOfQuizzes(){
+		return quizList.size();
+	}
+	
 	/**
 	 * Writes the QuizList to a file
 	 */

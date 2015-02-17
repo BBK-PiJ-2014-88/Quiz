@@ -29,7 +29,7 @@ public class SelectQuizFrame {
 	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 605, 472);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JButton playQuizButton = new JButton("PLAY");
@@ -53,13 +53,13 @@ public class SelectQuizFrame {
 		deleteButton.setBounds(358, 320, 175, 72);
 		frame.getContentPane().add(deleteButton);
 		
-		JLabel lblSelectAQuiz = new JLabel("SELECT A QUIZ");
-		lblSelectAQuiz.setBackground(Color.YELLOW);
-		lblSelectAQuiz.setForeground(Color.RED);
-		lblSelectAQuiz.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSelectAQuiz.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectAQuiz.setBounds(44, 27, 268, 25);
-		frame.getContentPane().add(lblSelectAQuiz);
+		JLabel instructionToUserLabel = new JLabel("SELECT A QUIZ");
+		instructionToUserLabel.setBackground(Color.YELLOW);
+		instructionToUserLabel.setForeground(Color.RED);
+		instructionToUserLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		instructionToUserLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		instructionToUserLabel.setBounds(44, 27, 268, 25);
+		frame.getContentPane().add(instructionToUserLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(29, 75, 298, 317);
