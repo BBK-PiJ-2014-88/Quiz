@@ -135,6 +135,7 @@ public class EnterQuestionFrame {
 		}
 		else if (!correctAnswerButtonSelected()){
 			JOptionPane.showMessageDialog(null, "Please select a correct answer");
+			return false;
 		}
 		return true;
 	}
