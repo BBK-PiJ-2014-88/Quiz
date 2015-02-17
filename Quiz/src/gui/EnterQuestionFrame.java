@@ -109,11 +109,12 @@ public class EnterQuestionFrame {
 		
 		JButton nextQuestionButton = new JButton("Insert Another Question");
 		nextQuestionButton.setBounds(53, 315, 200, 66);
-		nextQuestionButton.addActionListener(new nextQuestionButtonActionListener());
+		nextQuestionButton.addActionListener(new NextQuestionButtonActionListener());
 		frame.getContentPane().add(nextQuestionButton);
 		
 		JButton saveQuizButton = new JButton("Save Whole Quiz");
 		saveQuizButton.setBounds(321, 315, 200, 66);
+		saveQuizButton.addActionListener(new SaveQuizButtonActionListener());
 		frame.getContentPane().add(saveQuizButton);
 		
 		frame.setVisible(true);
@@ -194,7 +195,7 @@ public class EnterQuestionFrame {
 	 * created by the SetUpClient. This method then calls on the SetUpClient to relaunch
 	 * the GUI for a user to enter another question.
 	 */
-	class nextQuestionButtonActionListener implements ActionListener{
+	class NextQuestionButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isInputValid()){
@@ -211,7 +212,7 @@ public class EnterQuestionFrame {
 	 * the SetUpClient makes a question Object based on the user input
 	 * and then sends the whole Quiz to the Quiz Server to save
 	 */
-	class saveQuizButtonActionListener implements ActionListener{
+	class SaveQuizButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0){
 			if (isInputValid()){
