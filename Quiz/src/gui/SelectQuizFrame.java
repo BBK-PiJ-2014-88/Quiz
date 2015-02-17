@@ -8,6 +8,10 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import client.PlayerClient;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class SelectQuizFrame {
 
@@ -20,6 +24,7 @@ public class SelectQuizFrame {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -27,30 +32,41 @@ public class SelectQuizFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(44, 49, 268, 330);
-		frame.getContentPane().add(comboBox);
-		
 		JButton playQuizButton = new JButton("PLAY");
 		playQuizButton.setBackground(Color.YELLOW);
 		playQuizButton.setForeground(Color.RED);
 		playQuizButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		playQuizButton.setBounds(358, 56, 175, 72);
+		playQuizButton.setBounds(358, 76, 175, 72);
 		frame.getContentPane().add(playQuizButton);
 		
 		JButton viewScoresButton = new JButton("View High Scores");
 		viewScoresButton.setForeground(Color.RED);
 		viewScoresButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		viewScoresButton.setBackground(Color.YELLOW);
-		viewScoresButton.setBounds(358, 177, 175, 72);
+		viewScoresButton.setBounds(358, 200, 175, 72);
 		frame.getContentPane().add(viewScoresButton);
 		
 		JButton deleteButton = new JButton("DELETE");
 		deleteButton.setForeground(Color.RED);
 		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		deleteButton.setBackground(Color.YELLOW);
-		deleteButton.setBounds(358, 294, 175, 72);
+		deleteButton.setBounds(358, 320, 175, 72);
 		frame.getContentPane().add(deleteButton);
+		
+		JLabel lblSelectAQuiz = new JLabel("SELECT A QUIZ");
+		lblSelectAQuiz.setBackground(Color.YELLOW);
+		lblSelectAQuiz.setForeground(Color.RED);
+		lblSelectAQuiz.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSelectAQuiz.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectAQuiz.setBounds(44, 27, 268, 25);
+		frame.getContentPane().add(lblSelectAQuiz);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(29, 75, 298, 317);
+		frame.getContentPane().add(scrollPane);
+		
+		JList list = new JList();
+		scrollPane.setViewportView(list);
 		
 		frame.setVisible(true);
 	}
