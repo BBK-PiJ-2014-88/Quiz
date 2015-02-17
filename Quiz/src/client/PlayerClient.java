@@ -6,9 +6,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import server.QuizRemoteInterface;
 import gui.*;
+import quiz.*;
 
 public class PlayerClient {
 	private QuizRemoteInterface remoteServerObject; 
+	private PlayerAttempt newPlayerAttempt;
 	
 	public void launch(){
 		connectToServer();

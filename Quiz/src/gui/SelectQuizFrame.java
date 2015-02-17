@@ -53,6 +53,7 @@ public class SelectQuizFrame {
 		playQuizButton.setForeground(Color.RED);
 		playQuizButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		playQuizButton.setBounds(358, 76, 175, 72);
+		playQuizButton.addActionListener(new PlayQuizButtonActionListener());
 		frame.getContentPane().add(playQuizButton);
 		
 		JButton viewScoresButton = new JButton("View High Scores");
@@ -88,16 +89,22 @@ public class SelectQuizFrame {
 		
 		frame.setVisible(true);
 	}
+	public boolean isSelectionValid(){
+		if (list.isSelectionEmpty()){
+			JOptionPane.showMessageDialog(null, "Please select a Quiz");
+			return false;
+		}
+		else if (availableQuizzes[0].equals("There are no available Quizzes")){
+			JOptionPane.showMessageDialog(null, "There are no Quizzes to delete");
+			return false;
+		}
+		return true;
+	}
+	
 	class DeleteButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if (list.isSelectionEmpty()){
-				JOptionPane.showMessageDialog(null, "Please select a Quiz");
-			}
-			else if (availableQuizzes[0].equals("There are no available Quizzes")){
-				JOptionPane.showMessageDialog(null, "There are no Quizzes to delete");
-			}
-			else{
+			if (isSelectionValid()){
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
 				if (result == JOptionPane.YES_OPTION){
 					String selectedValue = (String) list.getSelectedValue();
@@ -110,8 +117,14 @@ public class SelectQuizFrame {
 					}
 				}
 			}
-			
 		}
-		
+	}
+	class PlayQuizButtonActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if(isSelectionValid()){
+			String name = JOptionPane.showInputDialog("Insert Player name: ");
+			}
+		}
 	}
 }
