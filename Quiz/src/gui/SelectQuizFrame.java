@@ -61,6 +61,7 @@ public class SelectQuizFrame {
 		viewScoresButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		viewScoresButton.setBackground(Color.YELLOW);
 		viewScoresButton.setBounds(358, 200, 175, 72);
+		viewScoresButton.addActionListener(new ViewHighScoresActionListener());
 		frame.getContentPane().add(viewScoresButton);
 		
 		JButton deleteButton = new JButton("DELETE");
@@ -125,6 +126,12 @@ public class SelectQuizFrame {
 			if(isSelectionValid()){
 				String name = JOptionPane.showInputDialog("Insert Player name: ");
 			}
+		}
+	}
+	class ViewHighScoresActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub	
 		}
 	}
 }
