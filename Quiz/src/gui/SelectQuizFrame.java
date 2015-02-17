@@ -5,10 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import client.PlayerClient;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -18,6 +25,7 @@ public class SelectQuizFrame {
 	private JFrame frame;
 	private PlayerClient client;
 	private String[] availableQuizzes;
+	private JList list;
 	
 	public SelectQuizFrame(PlayerClient client, String[] availableQuizzes) {
 		this.client = client;
@@ -73,9 +81,28 @@ public class SelectQuizFrame {
 		scrollPane.setBounds(29, 75, 298, 317);
 		frame.getContentPane().add(scrollPane);
 		
-		JList list = new JList(availableQuizzes);
+		list = new JList(availableQuizzes);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		
 		frame.setVisible(true);
+	}
+	class DeleteButtonActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (list.isSelectionEmpty()){
+				JOptionPane.showMessageDialog(null, "Please select a Quiz");
+			}
+			else{
+				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
+				if (result == JOptionPane.YES_OPTION){
+					String selectedValue = (String) list.getSelectedValue();
+					int quizIdToDelete = Integer.parseInt(selectedValue.substring(11, 12));
+					client.deleteQuiz(quizIdToDelete);
+				}
+			}
+			
+		}
+		
 	}
 }
