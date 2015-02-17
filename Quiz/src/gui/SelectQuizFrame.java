@@ -17,9 +17,17 @@ public class SelectQuizFrame {
 
 	private JFrame frame;
 	private PlayerClient client;
+	private String[] availableQuizzes;
 	
-	public SelectQuizFrame(PlayerClient client) {
+	public SelectQuizFrame(PlayerClient client, String[] availableQuizzes) {
 		this.client = client;
+		if (availableQuizzes.length != 0){
+			this.availableQuizzes = availableQuizzes;
+		}
+		else{
+			this.availableQuizzes = new String[1];
+			this.availableQuizzes[0] = "There are no available Quizzes";
+		}
 	}
 
 	/**
@@ -65,7 +73,7 @@ public class SelectQuizFrame {
 		scrollPane.setBounds(29, 75, 298, 317);
 		frame.getContentPane().add(scrollPane);
 		
-		JList list = new JList();
+		JList list = new JList(availableQuizzes);
 		scrollPane.setViewportView(list);
 		
 		frame.setVisible(true);

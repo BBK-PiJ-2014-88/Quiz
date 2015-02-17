@@ -12,7 +12,7 @@ public class PlayerClient {
 	
 	public void launch(){
 		connectToServer();
-		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this);
+		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getListItems());
 		selectQuizGui.launch();
 	}
 	/*
