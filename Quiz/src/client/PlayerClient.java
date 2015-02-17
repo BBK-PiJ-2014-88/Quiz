@@ -29,7 +29,15 @@ public class PlayerClient {
 		}
 		return result;	
 	}
-	
+	public boolean deleteQuiz(int id){
+		boolean result = false;
+		try {
+			result = remoteServerObject.deleteQuiz(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 
 	public boolean connectToServer(){

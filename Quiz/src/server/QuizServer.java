@@ -48,6 +48,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	}
 	public boolean deleteQuiz(int id){
 		quizList.remove(id);
+		flush();
 		return true;
 	}
 	

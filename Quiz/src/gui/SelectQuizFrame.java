@@ -67,6 +67,7 @@ public class SelectQuizFrame {
 		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		deleteButton.setBackground(Color.YELLOW);
 		deleteButton.setBounds(358, 320, 175, 72);
+		deleteButton.addActionListener(new DeleteButtonActionListener());
 		frame.getContentPane().add(deleteButton);
 		
 		JLabel instructionToUserLabel = new JLabel("SELECT A QUIZ");
@@ -98,7 +99,12 @@ public class SelectQuizFrame {
 				if (result == JOptionPane.YES_OPTION){
 					String selectedValue = (String) list.getSelectedValue();
 					int quizIdToDelete = Integer.parseInt(selectedValue.substring(11, 12));
-					client.deleteQuiz(quizIdToDelete);
+					if (client.deleteQuiz(quizIdToDelete)){
+						JOptionPane.showMessageDialog(null, "Quiz successfully deleted");
+						frame.setVisible(false);
+						frame.dispose();
+						client.launch();
+					}
 				}
 			}
 			
