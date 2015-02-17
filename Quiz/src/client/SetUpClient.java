@@ -3,7 +3,10 @@ package client;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.*;
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
+
 import gui.*;
 import server.*;
 import quiz.*;
@@ -33,9 +36,9 @@ public class SetUpClient {
 		enterQuestionGui.launch();
 	}
 	
-	public void addQuestionToQuiz(Question questionToAdd){
-		
-		this.newQuiz.addQuestion(questionToAdd);
+	public void addQuestionToQuiz(String question, String[] answers, int correctAnswer){
+		this.newQuiz.addQuestion(new Question(question, answers, correctAnswer));
+		System.out.println("Successfully added question with question" + question + "answer + " + Arrays.toString(answers) + "correct answer" + correctAnswer);
 	}
 	
 	public boolean connectToServer(){

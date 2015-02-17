@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import client.*;
 
@@ -19,7 +20,7 @@ public class EnterQuestionFrame {
 	private JTextField answer2TextField;
 	private JTextField answer3TextField;
 	private JTextField answer4TextField;
-
+	private ArrayList<JRadioButton> buttonList;
 
 	/**
 	 * Create the application.
@@ -97,6 +98,12 @@ public class EnterQuestionFrame {
 		buttonGroup.add(answer2RadioButton);
 		buttonGroup.add(answer3RadioButton);
 		buttonGroup.add(answer4RadioButton);
+		buttonList = new ArrayList<JRadioButton>();
+		buttonList.add(answer1RadioButton);
+		buttonList.add(answer2RadioButton);
+		buttonList.add(answer3RadioButton);
+		buttonList.add(answer4RadioButton);
+		
 		
 		JButton nextQuestionButton = new JButton("Insert Another Question");
 		nextQuestionButton.setBounds(53, 315, 200, 66);
@@ -121,17 +128,11 @@ public class EnterQuestionFrame {
 			JOptionPane.showMessageDialog(null, "Please enter 4 possible answers");
 			return false;
 		}
+		else if (!correctAnswerButtonSelected()){
+			JOptionPane.showMessageDialog(null, "Please select a correct answer");
+		}
 		return true;
 	}
-	class nextQuestionButtonActionListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (isInputValid()){
-				String question = questionTextField.getText();
-			}
-		}
-	}
-	
 	
 	public boolean answersInsertedCorrectly(){
 		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField,answer4TextField};
@@ -142,6 +143,42 @@ public class EnterQuestionFrame {
 		}
 		return true;
 	}
+	public boolean correctAnswerButtonSelected(){
+		for (JRadioButton button: buttonList){
+			if (button.isSelected()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	class nextQuestionButtonActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (isInputValid()){
+				String question = questionTextField.getText();
+				String[] answers = {answer1TextField.getText(), answer2TextField.getText(),
+						answer3TextField.getText(), answer4TextField.getText()};
+				int correctAnswer = getCorrectAnswerNumber();
+				client.addQuestionToQuiz(question, answers, correctAnswer);
+				frame.setVisible(false);
+				frame.dispose();
+				client.getQuizQuestions();
+			}
+		}
+	}
+	public int getCorrectAnswerNumber(){
+		for (JRadioButton button: buttonList){
+			if (button.isSelected()){
+				return Integer.parseInt(button.getText());
+			}
+		}
+		return Integer.MAX_VALUE; 
+		
+	}
+	
+	
+
 	
 
 	
