@@ -1,7 +1,7 @@
 package gui;
 
-import java.awt.EventQueue;
-
+import client.PlayerClient;
+import quiz.Question;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -9,36 +9,19 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 public class AnswerQuestionFrame {
-
 	private JFrame frame;
+	private PlayerClient client;
+	private Question questionBeingPlayed;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AnswerQuestionFrame window = new AnswerQuestionFrame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public AnswerQuestionFrame() {
-		initialize();
+	public AnswerQuestionFrame(PlayerClient client, Question question) {
+		this.client = client;
+		this.questionBeingPlayed = question;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 607, 464);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,5 +69,7 @@ public class AnswerQuestionFrame {
 		lblPleaseSelectAn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPleaseSelectAn.setBounds(50, 147, 429, 40);
 		frame.getContentPane().add(lblPleaseSelectAn);
+		
+		frame.setVisible(true);
 	}
 }

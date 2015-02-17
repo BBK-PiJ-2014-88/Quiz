@@ -13,6 +13,7 @@ public class PlayerClient {
 	private PlayerAttempt newPlayerAttempt;
 	private Quiz quizBeingPlayed;
 	
+	
 	public void launch(){
 		connectToServer();
 		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getListItems());
@@ -45,11 +46,14 @@ public class PlayerClient {
 		newPlayerAttempt = new PlayerAttempt(name);
 		try {
 			quizBeingPlayed = remoteServerObject.getQuiz(quizId);
-			AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame();
-			answerQuestionGui.launch(this, Quiz);
+			playQuiz();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	public void playQuiz(){
+		AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame();
+		answerQuestionGui.launch(this, Quiz);
 	}
 
 	public boolean connectToServer(){
