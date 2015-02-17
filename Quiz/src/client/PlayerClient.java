@@ -22,6 +22,7 @@ public class PlayerClient {
 	 */
 	public String[] getListItems(){
 		
+		
 	}
 	
 

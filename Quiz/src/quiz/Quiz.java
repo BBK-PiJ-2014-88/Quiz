@@ -30,5 +30,8 @@ public class Quiz implements Serializable {
 		this.highScores.add(playerAttempt);
 		Collections.sort(highScores);
 	}
+	public String getName(){
+		return this.quizName;
+	}
 	
 }

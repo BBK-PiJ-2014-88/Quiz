@@ -3,8 +3,10 @@ package server;
 import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+
 import quiz.*;
 
 /**
@@ -84,6 +86,18 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	
 	public int getNumberOfQuizzes(){
 		return quizList.size();
+	}
+	
+	/**
+	 * Creates a String array where each Quiz in the Quiz Server 
+	 * is represented by a string consisting of its QuizName and QuizId
+	 */
+	public String[] getEachQuizString(){
+		ArrayList<String> quizListStringArray = new ArrayList<String>();
+			for (Quiz quiz: quizList.values()){
+				quizListStringArray.add(new String("Quiz id: " + quiz.getQuizId() + " Quiz name: " + quiz.getName()));
+			}
+		return (String[]) quizListStringArray.toArray();
 	}
 	
 	/**
