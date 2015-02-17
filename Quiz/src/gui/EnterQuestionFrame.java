@@ -151,16 +151,18 @@ public class EnterQuestionFrame {
 		}
 		return false;
 	}
-	
+	public void saveQuiz(){
+		String question = questionTextField.getText();
+		String[] answers = {answer1TextField.getText(), answer2TextField.getText(),
+				answer3TextField.getText(), answer4TextField.getText()};
+		int correctAnswer = getCorrectAnswerNumber();
+		client.addQuestionToQuiz(question, answers, correctAnswer);
+	}
 	class nextQuestionButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isInputValid()){
-				String question = questionTextField.getText();
-				String[] answers = {answer1TextField.getText(), answer2TextField.getText(),
-						answer3TextField.getText(), answer4TextField.getText()};
-				int correctAnswer = getCorrectAnswerNumber();
-				client.addQuestionToQuiz(question, answers, correctAnswer);
+				saveQuiz();
 				frame.setVisible(false);
 				frame.dispose();
 				JOptionPane.showMessageDialog(null, "Successfully entered question");
