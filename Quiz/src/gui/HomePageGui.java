@@ -11,6 +11,11 @@ import client.*;
 
 import java.awt.event.*;
 
+/**
+ * 
+ * @author Sergio
+ * The GUI for the Quiz Homepage
+ */
 public class HomePageGui {
 	private JFrame frame;
 	private JButton makeQuizButton;
@@ -19,6 +24,10 @@ public class HomePageGui {
 	private JLabel label;
 	private MyImagePanel imagePanel;
 	
+	/**
+	 * Sets up the main JFrame and its components
+	 * Consists of two buttons: playQuizButton and makeQuizButton, an image and a label title
+	 */
 	public void launch(){
 		Font bigFont = new Font("serif", Font.BOLD, 28);
 		Font mediumFont = new Font("serif", Font.BOLD, 20);
@@ -35,10 +44,8 @@ public class HomePageGui {
 		
 		makeQuizButton = new JButton("Click here to make a Quiz!");
 		playQuizButton = new JButton("Click here to play a Quiz!");
-		PlayQuizButtonListener playQuizListener = new PlayQuizButtonListener();
-		MakeQuizButtonListener makeQuizListener = new MakeQuizButtonListener();
-		makeQuizButton.addActionListener(makeQuizListener);
-		playQuizButton.addActionListener(playQuizListener);
+		makeQuizButton.addActionListener(new MakeQuizButtonListener());
+		playQuizButton.addActionListener(new PlayQuizButtonListener());
 		makeQuizButton.setFont(mediumFont);
 		playQuizButton.setFont(mediumFont);
 		makeQuizButton.setForeground(Color.RED);
@@ -65,6 +72,9 @@ public class HomePageGui {
 		
 	}
 	
+	/**
+	 * Launches a playerClient if the playQuizButton is clicked
+	 */
 	class PlayQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			PlayerClient playQuizClient = new PlayerClient();
@@ -72,6 +82,9 @@ public class HomePageGui {
 			
 		}
 	}
+	/**
+	 * Launches a setUpClient if the makeQuizButton is clicked
+	 */
 	class MakeQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			SetUpClient makeQuizClient = new SetUpClient();

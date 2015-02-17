@@ -10,26 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import client.*;
 
+/*
+ * A GUI which allows the user to enter the name of a new Quiz
+ */
 public class NamingQuizGui {
 	private SetUpClient client;
 	private JFrame frame;
 	private JTextField textField;
-	private String userEnteredQuizName;
 	
-	public String getUserEnteredQuizName(){
-		return this.userEnteredQuizName;
-	}
-
-	
-	/**
-	 * Create the application.
-	 */
 	public NamingQuizGui(SetUpClient client) {
 		this.client = client;
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Creates the main JFrame and its components. Includes a JTextField for the user
+	 * to enter the QuizName, a button for the user to click once they've finished and a 
+	 * JLabel containing instructions for the user
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -59,13 +55,17 @@ public class NamingQuizGui {
 	}
 	
 
-	
+	/**
+	 * If the user clicks the nextButton, first the actionListener checks that the user
+	 * has actually entered some input, then invokes the SetUpClient method for 
+	 * creating a new Quiz object with the name entered by the user. Disposes this frame
+	 * and invokes the SetUpClient to launch the GUI for getting questions for the Quiz
+	 */
 	class NextButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if ((textField.getText()).length() > 0 ){
-				userEnteredQuizName = textField.getText();
-				client.createQuiz(userEnteredQuizName);
+				client.createQuiz(textField.getText());
 				frame.setVisible(false);
 				frame.dispose();
 				client.getQuizQuestions();

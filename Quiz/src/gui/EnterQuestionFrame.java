@@ -206,6 +206,11 @@ public class EnterQuestionFrame {
 			}
 		}
 	}
+	/**
+	 * If the user selects the SaveQuiz button, if the user has entered the input correctly,
+	 * the SetUpClient makes a question Object based on the user input
+	 * and then sends the whole Quiz to the Quiz Server to save
+	 */
 	class saveQuizButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0){

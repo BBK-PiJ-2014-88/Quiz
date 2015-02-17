@@ -3,9 +3,14 @@ package server;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.*;
-
 import gui.*;
 
+/**
+ * @ author Sergio Lamela
+ * This is the class that launches the entire Quiz. It sets up a Quiz Server object on the 
+ * registry for clients to call methods on and launches a HomePage GUI which enables the user
+ * to either play a Quiz or make a Quiz
+ */
 public class QuizLauncher {
 
 	public static void main(String[] args) {
