@@ -5,13 +5,14 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Set;
-
 import quiz.*;
 
 /**
  * 
  * @author Sergio
  * This is the central Quiz Server
+ * Client objects invoke methods on a Quiz Server Object in the registry
+ * 
  */
 public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterface  {
 
@@ -46,10 +47,11 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		
 	}
 	
-	//the following methods should actually return boolean values. therefore when clients call them, 
-	//they have a way of knowing they have been successful
+
 	public boolean addQuiz(Quiz quizToAdd, int id){
-		return false;
+		quizList.put(id, quizToAdd);
+		System.out.println("Added quiz to server");
+		return true;
 	}
 	public Quiz getQuiz(int id){
 		return null;
