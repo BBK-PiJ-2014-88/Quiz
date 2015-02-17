@@ -95,7 +95,7 @@ public class SelectQuizFrame {
 			return false;
 		}
 		else if (availableQuizzes[0].equals("There are no available Quizzes")){
-			JOptionPane.showMessageDialog(null, "There are no Quizzes to delete");
+			JOptionPane.showMessageDialog(null, "No Quiz selected");
 			return false;
 		}
 		return true;
@@ -123,7 +123,7 @@ public class SelectQuizFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(isSelectionValid()){
-			String name = JOptionPane.showInputDialog("Insert Player name: ");
+				String name = JOptionPane.showInputDialog("Insert Player name: ");
 			}
 		}
 	}
