@@ -163,6 +163,7 @@ public class EnterQuestionFrame {
 				client.addQuestionToQuiz(question, answers, correctAnswer);
 				frame.setVisible(false);
 				frame.dispose();
+				JOptionPane.showMessageDialog(null, "Successfully entered question");
 				client.getQuizQuestions();
 			}
 		}
