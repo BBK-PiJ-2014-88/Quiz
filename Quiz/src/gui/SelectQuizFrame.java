@@ -1,54 +1,56 @@
 package gui;
 
-import java.awt.*;
+import java.awt.EventQueue;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.JFrame;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
 import client.PlayerClient;
 
-public class SelectQuizFrame extends JFrame {
+public class SelectQuizFrame {
 
-	private JPanel contentPane;
-	private PlayerClient client;
 	private JFrame frame;
-
-	public SelectQuizFrame(PlayerClient client){
+	private PlayerClient client;
+	
+	public SelectQuizFrame(PlayerClient client) {
 		this.client = client;
 	}
 
 	/**
-	 * Create the frame.
+	 * Initialize the contents of the frame.
 	 */
 	public void launch() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 665, 470);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		frame = new JFrame();
+		frame.setBounds(100, 100, 605, 472);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(41, 33, 285, 336);
-		contentPane.add(comboBox);
+		comboBox.setBounds(44, 49, 268, 330);
+		frame.getContentPane().add(comboBox);
 		
-		JButton playQuizButton = new JButton("Play Quiz");
+		JButton playQuizButton = new JButton("PLAY");
+		playQuizButton.setBackground(Color.YELLOW);
 		playQuizButton.setForeground(Color.RED);
 		playQuizButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		playQuizButton.setBounds(395, 47, 159, 70);
-		contentPane.add(playQuizButton);
+		playQuizButton.setBounds(358, 56, 175, 72);
+		frame.getContentPane().add(playQuizButton);
 		
-		JButton deleteQuizButton = new JButton("Delete Quiz");
-		deleteQuizButton.setForeground(Color.RED);
-		deleteQuizButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		deleteQuizButton.setBounds(395, 164, 159, 70);
-		contentPane.add(deleteQuizButton);
+		JButton viewScoresButton = new JButton("View High Scores");
+		viewScoresButton.setForeground(Color.RED);
+		viewScoresButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		viewScoresButton.setBackground(Color.YELLOW);
+		viewScoresButton.setBounds(358, 177, 175, 72);
+		frame.getContentPane().add(viewScoresButton);
 		
-		JButton viewHighScoresButton = new JButton("View High Scores");
-		viewHighScoresButton.setForeground(Color.RED);
-		viewHighScoresButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		viewHighScoresButton.setBounds(395, 276, 159, 70);
-		contentPane.add(viewHighScoresButton);
+		JButton deleteButton = new JButton("DELETE");
+		deleteButton.setForeground(Color.RED);
+		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		deleteButton.setBackground(Color.YELLOW);
+		deleteButton.setBounds(358, 294, 175, 72);
+		frame.getContentPane().add(deleteButton);
 		
 		frame.setVisible(true);
 	}
