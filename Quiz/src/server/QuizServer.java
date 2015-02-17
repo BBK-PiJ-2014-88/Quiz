@@ -33,7 +33,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 			}
 		}
 	}
-	
+	//will remove this later
 	public static void main(String[] args){
 		QuizServer launcher = null;
 		try {
@@ -50,16 +50,23 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 
 	public boolean addQuiz(Quiz quizToAdd, int id){
 		quizList.put(id, quizToAdd);
+		flush();
 		System.out.println("Added quiz to server");
 		return true;
 	}
+	 
 	public Quiz getQuiz(int id){
-		return null;
+		return (Quiz) quizList.get(id);
 	}
 	public boolean deleteQuiz(int id){
-		return false;
+		quizList.remove(id);
+		return true;
 	}
 	
+	/**
+	 * Creates a unique ID to assign to a new Quiz created by the user. Iterates over the existing
+	 * ID's and finds the smallest number which isn't already being used as an ID
+	 */
 	public int createQuizId(){
 		Set keySet = quizList.keySet();
 		int iD = 1;
@@ -75,6 +82,9 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		return iD;
 	}
 	
+	/**
+	 * Writes the QuizList to a file
+	 */
 	private void flush(){
 		File storageFile = new File("QuizStorage.txt");
 		if (storageFile.exists()){
