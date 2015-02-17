@@ -93,11 +93,13 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	 * is represented by a string consisting of its QuizName and QuizId
 	 */
 	public String[] getEachQuizString(){
-		ArrayList<String> quizListStringArray = new ArrayList<String>();
+		int position = 0;
+		String[] result = new String[quizList.size()];
 			for (Quiz quiz: quizList.values()){
-				quizListStringArray.add(new String("Quiz id: " + quiz.getQuizId() + " Quiz name: " + quiz.getName()));
+				result[position] = new String("Quiz id: " + quiz.getQuizId() + " Quiz name: " + quiz.getName());
+				position++;
 			}
-		return (String[]) quizListStringArray.toArray();
+		return result;
 	}
 	
 	/**

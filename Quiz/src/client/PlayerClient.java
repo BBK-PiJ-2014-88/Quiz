@@ -21,8 +21,13 @@ public class PlayerClient {
 	 * where the user can select a Quiz
 	 */
 	public String[] getListItems(){
-		
-		
+		String[] result = null;
+		try {
+			result = remoteServerObject.getEachQuizString();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return result;	
 	}
 	
 
