@@ -35,20 +35,6 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 			}
 		}
 	}
-	//will remove this later
-	public static void main(String[] args){
-		QuizServer launcher = null;
-		try {
-			launcher = new QuizServer();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		launcher.launch();
-	}
-	public void launch(){
-		
-	}
-	
 
 	public boolean addQuiz(Quiz quizToAdd, int id){
 		quizList.put(id, quizToAdd);
