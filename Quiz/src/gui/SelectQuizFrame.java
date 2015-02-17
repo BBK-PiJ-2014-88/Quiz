@@ -1,40 +1,26 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
+
+import client.PlayerClient;
 
 public class SelectQuizFrame extends JFrame {
 
 	private JPanel contentPane;
+	private PlayerClient client;
+	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectQuizFrame frame = new SelectQuizFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public SelectQuizFrame(PlayerClient client){
+		this.client = client;
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public SelectQuizFrame() {
+	public void launch() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 665, 470);
 		contentPane = new JPanel();
@@ -63,5 +49,7 @@ public class SelectQuizFrame extends JFrame {
 		viewHighScoresButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		viewHighScoresButton.setBounds(395, 276, 159, 70);
 		contentPane.add(viewHighScoresButton);
+		
+		frame.setVisible(true);
 	}
 }

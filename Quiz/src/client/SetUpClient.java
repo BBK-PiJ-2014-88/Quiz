@@ -19,8 +19,8 @@ public class SetUpClient {
 	 */
 	public void launch(){
 		connectToServer();
-		NamingQuizGui questionNameGui = new NamingQuizGui(this);
-		questionNameGui.launch();
+		NamingQuizGui quizNameGui = new NamingQuizGui(this);
+		quizNameGui.launch();
 	}
 	/**
 	 * Creates a Quiz Object with a user supplied name
