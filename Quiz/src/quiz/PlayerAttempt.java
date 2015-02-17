@@ -5,6 +5,9 @@ import java.io.Serializable;
 public class PlayerAttempt implements Comparable, Serializable {
 	private String playerName;
 	private int score;
+	public PlayerAttempt(String playerName){
+		this.playerName = playerName;
+	}
 	public String printScore(Quiz quiz, int numberOfCorrectAnswers){
 		return (numberOfCorrectAnswers + " / " + quiz.getNumberOfQuestions()); 
 	}
