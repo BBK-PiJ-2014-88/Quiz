@@ -125,6 +125,14 @@ public class SelectQuizFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			if(isSelectionValid()){
 				String name = JOptionPane.showInputDialog("Insert Player name: ");
+				if (name.length() == 0){
+					JOptionPane.showMessageDialog(null, "Please enter a name");
+				}
+				else{
+					frame.setVisible(false);
+					frame.dispose();
+					client.createPlayerAttempt(name); 
+				}
 			}
 		}
 	}

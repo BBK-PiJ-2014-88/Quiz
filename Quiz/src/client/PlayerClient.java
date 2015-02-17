@@ -40,7 +40,10 @@ public class PlayerClient {
 		}
 		return result;
 	}
-	
+	public void createPlayerAttempt(String name){
+		newPlayerAttempt = new PlayerAttempt(name);
+		
+	}
 
 	public boolean connectToServer(){
 		try {

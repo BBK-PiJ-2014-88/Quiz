@@ -74,29 +74,31 @@ public class AnswerQuestionFrame extends JFrame {
 		possibleAnswer4.setBounds(314, 243, 165, 20);
 		contentPane.add(possibleAnswer4);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setBounds(227, 179, 18, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		JRadioButton answer1RadioButton = new JRadioButton("New radio button");
+		answer1RadioButton.setBounds(227, 179, 18, 23);
+		contentPane.add(answer1RadioButton);
 		
-		JRadioButton radioButton = new JRadioButton("New radio button");
-		radioButton.setBounds(227, 242, 18, 23);
-		contentPane.add(radioButton);
+		JRadioButton answer3RadioButton = new JRadioButton("New radio button");
+		answer3RadioButton.setBounds(227, 242, 18, 23);
+		contentPane.add(answer3RadioButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("New radio button");
-		radioButton_1.setBounds(502, 179, 18, 23);
-		contentPane.add(radioButton_1);
+		JRadioButton answer2RadioButton = new JRadioButton("New radio button");
+		answer2RadioButton.setBounds(502, 179, 18, 23);
+		contentPane.add(answer2RadioButton);
 		
-		JRadioButton radioButton_2 = new JRadioButton("New radio button");
-		radioButton_2.setBounds(502, 242, 18, 23);
-		contentPane.add(radioButton_2);
+		JRadioButton answer4RadioButton = new JRadioButton("New radio button");
+		answer4RadioButton.setBounds(502, 242, 18, 23);
+		contentPane.add(answer4RadioButton);
 		
-		JLabel lblPleaseSelectThe = new JLabel("Please select the Correct Answer");
-		lblPleaseSelectThe.setBounds(45, 115, 226, 31);
-		contentPane.add(lblPleaseSelectThe);
+		JLabel userInstructionLabel = new JLabel("Please select the Correct Answer from the options below");
+		userInstructionLabel.setForeground(Color.RED);
+		userInstructionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		userInstructionLabel.setBounds(45, 115, 361, 31);
+		contentPane.add(userInstructionLabel);
 		
-		JButton btnNextQuestion = new JButton("Next Question");
-		btnNextQuestion.setForeground(Color.RED);
-		btnNextQuestion.setBounds(431, 337, 118, 47);
-		contentPane.add(btnNextQuestion);
+		JButton nextQuestionButton = new JButton("Next Question");
+		nextQuestionButton.setForeground(Color.RED);
+		nextQuestionButton.setBounds(431, 337, 118, 47);
+		contentPane.add(nextQuestionButton);
 	}
 }
