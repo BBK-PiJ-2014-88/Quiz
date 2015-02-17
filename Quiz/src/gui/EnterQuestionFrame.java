@@ -1,9 +1,7 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,25 +11,26 @@ import java.util.ArrayList;
 import client.*;
 
 public class EnterQuestionFrame {
-	private SetUpClient client;
-	private JFrame frame;
-	private JTextField questionTextField;
-	private JTextField answer1TextField;
+	private SetUpClient client;  //the setUpClient that invoked this frame
+	private JFrame frame;		//the main JFrame
+	private JTextField questionTextField; // The TextField for entering a question
+	private JTextField answer1TextField; //The textFields for entering answers
 	private JTextField answer2TextField;
 	private JTextField answer3TextField;
 	private JTextField answer4TextField;
-	private ArrayList<JRadioButton> buttonList;
+	private ArrayList<JRadioButton> buttonList; //ArrayList containing 4 JRadioButtons
 
-	/**
-	 * Create the application.
-	 */
 	public EnterQuestionFrame(SetUpClient client) {
 		this.client = client;
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * Sets up the frame and its contents
+	 * Includes 2 JLabels instructing the user what to do, 
+	 * 1 JTextField for entering a question, 4 JTextfields for entering possible answers,
+	 * 4 JRadioButtons for selecting the correct answer and
+	 * 2 Jbutton's for adding another Question or adding a question and Saving the quiz
+	 * 
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -93,11 +92,14 @@ public class EnterQuestionFrame {
 		answer4RadioButton.setBounds(487, 264, 23, 23);
 		frame.getContentPane().add(answer4RadioButton);
 
+		//add JRadioButtons to buttonGroup so only 1 can be selected at a time
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(answer1RadioButton);
 		buttonGroup.add(answer2RadioButton);
 		buttonGroup.add(answer3RadioButton);
 		buttonGroup.add(answer4RadioButton);
+		//add JRadioButtons to ArrayList. The ArrayList will be used for verifying which 
+		//JRadioButton has been selected
 		buttonList = new ArrayList<JRadioButton>();
 		buttonList.add(answer1RadioButton);
 		buttonList.add(answer2RadioButton);
@@ -114,11 +116,13 @@ public class EnterQuestionFrame {
 		saveQuizButton.setBounds(321, 315, 200, 66);
 		frame.getContentPane().add(saveQuizButton);
 		
-
-		
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Method for checking that the user has correctly filled in the question form
+	 * @return boolean : true if input is valid, false otherwise
+	 */
 	public boolean isInputValid(){
 		if (questionTextField.getText().length() == 0){
 			JOptionPane.showMessageDialog(null, "Please enter a question");
@@ -134,6 +138,10 @@ public class EnterQuestionFrame {
 		return true;
 	}
 	
+	/*
+	 * Method that makes sure 4 possible answers have been inserted
+	 * @return boolean : true if answers have been inserted, false otherwise
+	 */
 	public boolean answersInsertedCorrectly(){
 		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField,answer4TextField};
 		for (JTextField answerBox: answerFields){
@@ -143,6 +151,10 @@ public class EnterQuestionFrame {
 		}
 		return true;
 	}
+	/**
+	 * 
+	 * @return boolean : returns true if 1 JRadtioButton has been selected
+	 */
 	public boolean correctAnswerButtonSelected(){
 		for (JRadioButton button: buttonList){
 			if (button.isSelected()){
@@ -151,6 +163,11 @@ public class EnterQuestionFrame {
 		}
 		return false;
 	}
+	
+	/*
+	 * Gets the question, answers and correct answer number entered by the user
+	 * and sends it to the SetUpClient to make into a question
+	 */
 	public void saveQuestion(){
 		String question = questionTextField.getText();
 		String[] answers = {answer1TextField.getText(), answer2TextField.getText(),
@@ -158,6 +175,25 @@ public class EnterQuestionFrame {
 		int correctAnswer = getCorrectAnswerNumber();
 		client.addQuestionToQuiz(question, answers, correctAnswer);
 	}
+	
+	/**
+	 * Checks which JRadioButton has been selected
+	 * @return the int representing the correct answer inserted by the user
+	 */
+	public int getCorrectAnswerNumber(){
+		for (JRadioButton button: buttonList){
+			if (button.isSelected()){
+				return Integer.parseInt(button.getText());
+			}
+		}
+		return Integer.MAX_VALUE; 
+	}
+	/*
+	 * If the user selects the Next Question button, the method checks whether the user
+	 * has filled in the form correctly. If so, a question object based on the user input is 
+	 * created by the SetUpClient. This method then calls on the SetUpClient to relaunch
+	 * the GUI for a user to enter another question.
+	 */
 	class nextQuestionButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -183,19 +219,5 @@ public class EnterQuestionFrame {
 			}
 		}
 	}
-	public int getCorrectAnswerNumber(){
-		for (JRadioButton button: buttonList){
-			if (button.isSelected()){
-				return Integer.parseInt(button.getText());
-			}
-		}
-		return Integer.MAX_VALUE; 
-		
-	}
-	
-	
-
-	
-
 	
 }
