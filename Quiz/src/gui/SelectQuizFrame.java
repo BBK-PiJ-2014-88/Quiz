@@ -94,6 +94,9 @@ public class SelectQuizFrame {
 			if (list.isSelectionEmpty()){
 				JOptionPane.showMessageDialog(null, "Please select a Quiz");
 			}
+			else if (availableQuizzes[0].equals("There are no available Quizzes")){
+				JOptionPane.showMessageDialog(null, "There are no Quizzes to delete");
+			}
 			else{
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
 				if (result == JOptionPane.YES_OPTION){
