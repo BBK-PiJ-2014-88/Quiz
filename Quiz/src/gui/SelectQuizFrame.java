@@ -101,16 +101,26 @@ public class SelectQuizFrame {
 		}
 		return true;
 	}
-	
+	/*
+	 * Gets the id of the quiz the user wants to play or delete
+	 * In the JList quiz information is displayed as 
+	 * "[Quiz id]: " + id + " [Quiz name]: " + quizName"
+	 * Therefore the id number starts is at position 11 to before [Quiz name]
+	 */
+	public int getQuizId(){
+		String quizInfo = (String) list.getSelectedValue();
+		int positionAfterId = quizInfo.indexOf(" [Quiz name]:");
+		int result = Integer.parseInt(quizInfo.substring(11, positionAfterId));
+		System.out.println("id: " + result);
+		return result;
+	}
 	class DeleteButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isSelectionValid()){
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
 				if (result == JOptionPane.YES_OPTION){
-					String selectedValue = (String) list.getSelectedValue();
-					int quizIdToDelete = Integer.parseInt(selectedValue.substring(11, 12));
-					if (client.deleteQuiz(quizIdToDelete)){
+					if (client.deleteQuiz(getQuizId())){
 						JOptionPane.showMessageDialog(null, "Quiz successfully deleted");
 						frame.setVisible(false);
 						frame.dispose();
@@ -131,7 +141,7 @@ public class SelectQuizFrame {
 				else{
 					frame.setVisible(false);
 					frame.dispose();
-					client.createPlayerAttempt(name); 
+					client.createPlayerAttempt(name, getQuizId()); 
 				}
 			}
 		}

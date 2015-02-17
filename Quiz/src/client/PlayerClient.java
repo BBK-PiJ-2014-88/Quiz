@@ -40,7 +40,7 @@ public class PlayerClient {
 		}
 		return result;
 	}
-	public void createPlayerAttempt(String name){
+	public void createPlayerAttempt(String name, int quizId){
 		newPlayerAttempt = new PlayerAttempt(name);
 		
 	}
