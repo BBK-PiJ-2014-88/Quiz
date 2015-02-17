@@ -11,6 +11,7 @@ import quiz.*;
 public class PlayerClient {
 	private QuizRemoteInterface remoteServerObject; 
 	private PlayerAttempt newPlayerAttempt;
+	private Quiz quizBeingPlayed;
 	
 	public void launch(){
 		connectToServer();
@@ -42,7 +43,13 @@ public class PlayerClient {
 	}
 	public void createPlayerAttempt(String name, int quizId){
 		newPlayerAttempt = new PlayerAttempt(name);
-		
+		try {
+			quizBeingPlayed = remoteServerObject.getQuiz(quizId);
+			AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame();
+			answerQuestionGui.launch(this, Quiz);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean connectToServer(){
