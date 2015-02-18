@@ -4,6 +4,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+
+import javax.swing.JOptionPane;
+
 import server.QuizRemoteInterface;
 import gui.*;
 import quiz.*;
@@ -61,9 +64,21 @@ public class PlayerClient {
 			questionNumber++;
 		}
 		else{
-			newPlayerAttempt.setScore(playerScore);
+			displayFinalMessage();
+			addPlayerAttemptToServer();
 		}
 
+	}
+	public void addPlayerAttemptToServer(){
+		newPlayerAttempt.setScore(playerScore);
+		try {
+			remoteServerObject.addHighScore(newPlayerAttempt, quizBeingPlayed.getQuizId());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	public void displayFinalMessage(){
+		JOptionPane.showMessageDialog(null, "Congratulations, your score was: " + playerScore + " out of " + quizBeingPlayed.getNumberOfQuestions());
 	}
 	
 	public void increasePlayerScore(){
