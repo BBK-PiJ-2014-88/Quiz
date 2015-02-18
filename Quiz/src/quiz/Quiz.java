@@ -33,5 +33,8 @@ public class Quiz implements Serializable {
 	public String getName(){
 		return this.quizName;
 	}
+	public ArrayList<PlayerAttempt>getPlayerAttempts(){
+		return highScores;
+	}
 	
 }
