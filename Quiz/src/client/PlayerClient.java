@@ -12,6 +12,8 @@ public class PlayerClient {
 	private QuizRemoteInterface remoteServerObject; 
 	private PlayerAttempt newPlayerAttempt;
 	private Quiz quizBeingPlayed;
+	private int playerScore;
+	private int questionNumber;
 	
 	
 	public void launch(){
@@ -46,14 +48,22 @@ public class PlayerClient {
 		newPlayerAttempt = new PlayerAttempt(name);
 		try {
 			quizBeingPlayed = remoteServerObject.getQuiz(quizId);
-			playQuiz();
+			playNextQuestion();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	public void playQuiz(){
-		AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame();
-		answerQuestionGui.launch(this, Quiz);
+	public void playNextQuestion(){
+		if (questionNumber < quizBeingPlayed.getNumberOfQuestions()){
+			Question question = quizBeingPlayed.getQuestions().get(questionNumber);
+			AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame(this, question, questionNumber +1);
+			answerQuestionGui.launch();
+			questionNumber++;
+		}
+	}
+	
+	public void increasePlayerScore(){
+		playerScore++;
 	}
 
 	public boolean connectToServer(){

@@ -12,10 +12,12 @@ public class AnswerQuestionFrame {
 	private JFrame frame;
 	private PlayerClient client;
 	private Question questionBeingPlayed;
+	private int questionNumber;
 
-	public AnswerQuestionFrame(PlayerClient client, Question question) {
+	public AnswerQuestionFrame(PlayerClient client, Question question, int questionNumber) {
 		this.client = client;
 		this.questionBeingPlayed = question;
+		this.questionNumber = questionNumber;
 	}
 
 	/**
@@ -27,37 +29,37 @@ public class AnswerQuestionFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel questionLabel = new JLabel("Question goes here");
+		JLabel questionLabel = new JLabel(questionBeingPlayed.getQuestion());
 		questionLabel.setBackground(Color.YELLOW);
 		questionLabel.setForeground(new Color(0, 0, 0));
 		questionLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		questionLabel.setBounds(40, 71, 517, 65);
 		frame.getContentPane().add(questionLabel);
 		
-		JLabel questionNumberLabel = new JLabel("QuestionNumber");
+		JLabel questionNumberLabel = new JLabel("Question Number: " + questionNumber);
 		questionNumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		questionNumberLabel.setBounds(40, 34, 127, 14);
 		frame.getContentPane().add(questionNumberLabel);
 		
-		JButton answer1Button = new JButton("New button");
+		JButton answer1Button = new JButton(questionBeingPlayed.getAnswers()[0]);
 		answer1Button.setBackground(Color.YELLOW);
 		answer1Button.setForeground(Color.RED);
 		answer1Button.setBounds(82, 200, 159, 78);
 		frame.getContentPane().add(answer1Button);
 		
-		JButton answer2Button = new JButton("New button");
+		JButton answer2Button = new JButton(questionBeingPlayed.getAnswers()[1]);
 		answer2Button.setForeground(Color.RED);
 		answer2Button.setBackground(Color.YELLOW);
 		answer2Button.setBounds(357, 200, 159, 78);
 		frame.getContentPane().add(answer2Button);
 		
-		JButton answer3Button = new JButton("New button");
+		JButton answer3Button = new JButton(questionBeingPlayed.getAnswers()[2]);
 		answer3Button.setForeground(Color.RED);
 		answer3Button.setBackground(Color.YELLOW);
 		answer3Button.setBounds(82, 311, 159, 78);
 		frame.getContentPane().add(answer3Button);
 		
-		JButton answer4Button = new JButton("New button");
+		JButton answer4Button = new JButton(questionBeingPlayed.getAnswers()[3]);
 		answer4Button.setForeground(Color.RED);
 		answer4Button.setBackground(Color.YELLOW);
 		answer4Button.setBounds(357, 311, 159, 78);
