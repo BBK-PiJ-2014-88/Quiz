@@ -49,6 +49,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	public boolean deleteQuiz(int id){
 		quizList.remove(id);
 		flush();
+		System.out.println("Deletred quiz from server");
 		return true;
 	}
 	
@@ -88,9 +89,10 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 			}
 		return result;
 	}
-	public boolean addHighScore(PlayerAttempt highScore, int id){
+	public void addHighScore(PlayerAttempt highScore, int id){
 		quizList.get(id).addPlayerAttempt(highScore);
-		return true;
+		flush();
+		System.out.println("Added player Attempt");
 	}
 	
 	/**
