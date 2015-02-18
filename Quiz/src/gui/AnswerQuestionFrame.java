@@ -122,8 +122,8 @@ public class AnswerQuestionFrame {
 				JOptionPane.showMessageDialog(null, "Well done. Your answer was Correct");
 				frame.setVisible(false);
 				frame.dispose();
-				client.playNextQuestion();
 				client.increasePlayerScore();
+				client.playNextQuestion();
 			}		
 			
 		}
