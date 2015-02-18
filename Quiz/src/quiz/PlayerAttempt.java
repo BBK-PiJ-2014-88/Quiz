@@ -19,4 +19,7 @@ public class PlayerAttempt implements Comparable, Serializable {
 		//Stores PlayerAttempts from Highest to Lowest score
 		return  otherPlayerAttempt.getScore() - this.getScore();
 	}
+	public void setScore(int score){
+		this.score = score;
+	}
 }
