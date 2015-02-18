@@ -22,4 +22,7 @@ public class PlayerAttempt implements Comparable, Serializable {
 	public void setScore(int score){
 		this.score = score;
 	}
+	public String getPlayerName(){
+		return this.playerName;
+	}
 }

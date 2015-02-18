@@ -85,8 +85,19 @@ public class PlayerClient {
 		playerScore++;
 	}
 	public void displayHighScore(int id){
-		HighScoresGui viewScoresGui = new HighScoresGui(this);
-		viewScoresGui.launch();
+		Quiz quizWithScores;
+		try {
+			quizWithScores = remoteServerObject.getQuiz(id);
+			String[] scoresToDisplay = new String[quizWithScores.getPlayerAttempts().size()];
+			int position = 0;
+			for (PlayerAttempt attempt: quizWithScores.getPlayerAttempts()){
+				scoresToDisplay[position] = "Player name: " + attempt.getPlayerName() + " Score: " + attempt.getScore() + " / " + quizWithScores.getNumberOfQuestions();
+			}
+			HighScoresGui viewScoresGui = new HighScoresGui(this, scoresToDisplay);
+			viewScoresGui.launch();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean connectToServer(){

@@ -38,7 +38,7 @@ public class HighScoresGui {
 		scrollPane.setBounds(69, 300, 359, -186);
 		frame.getContentPane().add(scrollPane);
 		
-		JList list = new JList();
+		JList list = new JList(scoresToDisplay);
 		list.setBounds(79, 275, 340, -149);
 		frame.getContentPane().add(list);
 		
