@@ -84,6 +84,9 @@ public class PlayerClient {
 	public void increasePlayerScore(){
 		playerScore++;
 	}
+	public void displayHighScore(int id){
+		
+	}
 
 	public boolean connectToServer(){
 		try {
