@@ -60,7 +60,10 @@ public class PlayerClient {
 			answerQuestionGui.launch();
 			questionNumber++;
 		}
-		// else JoptionPane to show score and save PlayerAttempt to server
+		else{
+			newPlayerAttempt.setScore(playerScore);
+		}
+
 	}
 	
 	public void increasePlayerScore(){

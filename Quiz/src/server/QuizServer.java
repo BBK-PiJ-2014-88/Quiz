@@ -88,6 +88,10 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 			}
 		return result;
 	}
+	public boolean addHighScore(PlayerAttempt highScore, int id){
+		quizList.get(id).addPlayerAttempt(highScore);
+		return true;
+	}
 	
 	/**
 	 * Writes the QuizList to a file
