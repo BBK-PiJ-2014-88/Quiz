@@ -1,0 +1,30 @@
+Testing:
+-Learn about mocking
+-Learn about testing Client/Server
+-Learn about testing GUI's
+-Do JUnit Tests
+-Testing concurrency
+
+Refactor:
+Add comments
+Make everything look pretty
+decouple classes 
+tidy up code
+sort out import statements
+do better MVC
+
+RMI:
+read RMI Java trails
+do PiJ RMI notes
+
+Concurrency:
+do PiJ concurrency notes
+Read Head First Java Concurrency
+Read Big Java Concurrency
+Implement Concurrency
+
+Streams/Lambda's:
+Read PiJ Notes
+see if code can be improved
+
+
