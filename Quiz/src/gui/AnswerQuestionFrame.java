@@ -22,9 +22,11 @@ public class AnswerQuestionFrame {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	public void launch() {
 		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 11));
 		frame.setBounds(100, 100, 607, 464);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -37,8 +39,8 @@ public class AnswerQuestionFrame {
 		frame.getContentPane().add(questionLabel);
 		
 		JLabel questionNumberLabel = new JLabel("Question Number: " + questionNumber);
-		questionNumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		questionNumberLabel.setBounds(40, 34, 127, 14);
+		questionNumberLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		questionNumberLabel.setBounds(40, 34, 247, 14);
 		frame.getContentPane().add(questionNumberLabel);
 		
 		JButton answer1Button = new JButton(questionBeingPlayed.getAnswers()[0]);
