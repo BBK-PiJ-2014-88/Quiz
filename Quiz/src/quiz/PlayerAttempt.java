@@ -8,6 +8,10 @@ public class PlayerAttempt implements Comparable, Serializable {
 	public PlayerAttempt(String playerName){
 		this.playerName = playerName;
 	}
+	public String toString(){
+		String result = "Playername: " + playerName + "Score: " + score;
+		return result;
+	}
 	public String printScore(Quiz quiz, int numberOfCorrectAnswers){
 		return (numberOfCorrectAnswers + " / " + quiz.getNumberOfQuestions()); 
 	}

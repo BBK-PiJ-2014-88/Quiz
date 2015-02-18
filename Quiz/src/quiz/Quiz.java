@@ -36,5 +36,17 @@ public class Quiz implements Serializable {
 	public ArrayList<PlayerAttempt>getPlayerAttempts(){
 		return highScores;
 	}
+	public String toString(){
+		String questions = "";
+		for (Question question: this.quizQuestions){
+			questions = questions + question.toString() + "/n";
+		}
+		String PlayerAttempts = "";
+		for (PlayerAttempt attempt : this.highScores){
+			PlayerAttempts = PlayerAttempts + attempt.toString() + "/n";
+		}
+		String result = "QuizName: " + this.quizName + "QuizId: " + this.quizId + questions + PlayerAttempts;
+		return result;
+	}
 	
 }

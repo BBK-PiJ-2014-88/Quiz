@@ -22,5 +22,12 @@ public class Question implements Serializable{
 	public String getCorrectAnswer(){
 		return this.answers[correctAnswerNumber];
 	}
-
+	public String toString(){
+		String answersString = "";
+		for (String answer: answers){
+			answersString = answersString + " Answer: " +  answer;
+		}
+		return "Question: " + question + "answers: " + answersString;
+		
+	}
 }

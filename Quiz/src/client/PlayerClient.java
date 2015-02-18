@@ -90,9 +90,11 @@ public class PlayerClient {
 			quizWithScores = remoteServerObject.getQuiz(id);
 			System.out.println("got quiz");
 			String[] scoresToDisplay = new String[quizWithScores.getPlayerAttempts().size()];
+			System.out.println("size" + quizWithScores.getPlayerAttempts().size());
 			int position = 0;
 			for (PlayerAttempt attempt: quizWithScores.getPlayerAttempts()){
 				scoresToDisplay[position] = "Player name: " + attempt.getPlayerName() + " Score: " + attempt.getScore() + " / " + quizWithScores.getNumberOfQuestions();
+				position++;
 			}
 			HighScoresGui viewScoresGui = new HighScoresGui(this, scoresToDisplay);
 			viewScoresGui.launch();

@@ -93,6 +93,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		quizList.get(id).addPlayerAttempt(highScore);
 		flush();
 		System.out.println("Added player Attempt");
+		System.out.println(quizList.get(id));
 	}
 	
 	/**
