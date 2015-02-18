@@ -2,29 +2,26 @@ package gui;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
+import client.PlayerClient;
 
 public class HighScoresGui {
 
 	private JFrame frame;
-
-	/**
-	 * Create the application.
-	 */
-	public HighScoresGui() {
-		initialize();
+	private PlayerClient client;
+	private String[] scoresToDisplay;
+	
+	public HighScoresGui(PlayerClient client, String[] scoresToDisplay) {
+		this.client = client;
+		this.scoresToDisplay = scoresToDisplay;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 494, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,6 +50,7 @@ public class HighScoresGui {
 		listScrollPane.setViewportView(highScoresList);
 		highScoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		highScoresList.setForeground(Color.BLACK);
+	
 		frame.setVisible(true);
 	}
 }

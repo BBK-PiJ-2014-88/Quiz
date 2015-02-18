@@ -85,7 +85,8 @@ public class PlayerClient {
 		playerScore++;
 	}
 	public void displayHighScore(int id){
-		
+		HighScoresGui viewScoresGui = new HighScoresGui(this);
+		viewScoresGui.launch();
 	}
 
 	public boolean connectToServer(){
