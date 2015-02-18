@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 import client.PlayerClient;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 
@@ -16,6 +18,7 @@ public class HighScoresGui {
 	private JFrame frame;
 	private PlayerClient client;
 	private String[] scoresToDisplay;
+	private JComboBox comboBox;
 	
 	public HighScoresGui(PlayerClient client, String[] scoresToDisplay) {
 		this.client = client;
@@ -33,21 +36,16 @@ public class HighScoresGui {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel titleLabel = new JLabel("High Scores");
+		titleLabel.setBounds(41, 32, 401, 56);
 		titleLabel.setForeground(Color.RED);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setBackground(Color.YELLOW);
-		titleLabel.setBounds(41, 32, 401, 56);
 		frame.getContentPane().add(titleLabel);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(394, 120, -312, 183);
-		frame.getContentPane().add(scrollPane);
-		
-		JList list = new JList(scoresToDisplay);
-		scrollPane.setViewportView(list);
-		list.setFont(new Font("Tahoma", Font.BOLD, 12));
-		list.setForeground(Color.RED);
-		list.setBackground(Color.YELLOW);
+		comboBox = new JComboBox(scoresToDisplay);
+		comboBox.setBounds(41, 99, 381, 224);
+		frame.getContentPane().add(comboBox);
+		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{titleLabel}));
 		
 
 	

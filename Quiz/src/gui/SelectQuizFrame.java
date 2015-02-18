@@ -111,7 +111,7 @@ public class SelectQuizFrame {
 		String quizInfo = (String) list.getSelectedValue();
 		int positionAfterId = quizInfo.indexOf(" [Quiz name]:");
 		int result = Integer.parseInt(quizInfo.substring(11, positionAfterId));
-		System.out.println("id: " + result);
+		System.out.println(" got id: " + result);
 		return result;
 	}
 	class DeleteButtonActionListener implements ActionListener{

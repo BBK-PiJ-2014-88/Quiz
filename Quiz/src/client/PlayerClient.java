@@ -88,6 +88,7 @@ public class PlayerClient {
 		Quiz quizWithScores;
 		try {
 			quizWithScores = remoteServerObject.getQuiz(id);
+			System.out.println("got quiz");
 			String[] scoresToDisplay = new String[quizWithScores.getPlayerAttempts().size()];
 			int position = 0;
 			for (PlayerAttempt attempt: quizWithScores.getPlayerAttempts()){

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Quiz implements Serializable {
-	String quizName;
-	int quizId;
-	ArrayList<Question> quizQuestions = new ArrayList<Question>();
-	ArrayList<PlayerAttempt> highScores = new ArrayList<PlayerAttempt>();
+	private String quizName;
+	private int quizId;
+	private ArrayList<Question> quizQuestions = new ArrayList<Question>();
+	private ArrayList<PlayerAttempt> highScores = new ArrayList<PlayerAttempt>();
 	
 	public Quiz(String name, int Id){
 		this.quizName = name;
