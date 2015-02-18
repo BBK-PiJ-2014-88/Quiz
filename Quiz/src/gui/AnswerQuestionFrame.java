@@ -106,8 +106,7 @@ public class AnswerQuestionFrame {
 	class WrongAnswerButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			if (JOptionPane.showConfirmDialog(null, "Is this your final answer?") == JOptionPane.YES_OPTION){
-				JOptionPane.showMessageDialog(null, "Answer submitted.");
-				JOptionPane.showMessageDialog(null, "Your answer was incorrect");
+				JOptionPane.showMessageDialog(null, "Too bad, Your answer was incorrect");
 				frame.setVisible(false);
 				frame.dispose();
 				client.playNextQuestion();
@@ -118,7 +117,6 @@ public class AnswerQuestionFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (JOptionPane.showConfirmDialog(null, "Is this your final answer?") == JOptionPane.YES_OPTION){
-				JOptionPane.showMessageDialog(null, "Answer submitted.");
 				JOptionPane.showMessageDialog(null, "Well done. Your answer was Correct");
 				frame.setVisible(false);
 				frame.dispose();
