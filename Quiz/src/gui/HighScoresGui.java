@@ -1,16 +1,10 @@
 package gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Font;
-
 import client.PlayerClient;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-
 import java.awt.Component;
 
 
