@@ -9,7 +9,7 @@ import server.*;
 import quiz.*;
 
 public class SetUpClient {
-	private Quiz newQuiz;
+	private Quiz newQuiz; //the new Quiz being created by the user
 	private QuizRemoteInterface remoteServerObject; //the remote server object in the registry
 	
 	/**
@@ -59,23 +59,20 @@ public class SetUpClient {
 	 */
 	public void addQuestionToQuiz(String question, String[] answers, int correctAnswer){
 		this.newQuiz.addQuestion(new Question(question, answers, correctAnswer));
-		System.out.println("Successfully added question with question" + question + "answer + " + Arrays.toString(answers) + "correct answer" + correctAnswer);
+		System.out.println("Successfully added question with question: " + question + " Answers: + " + Arrays.toString(answers) + " Correct answer: " + correctAnswer);
 	}
 	/**
 	 * Locates the Quiz Server object on the registry so methods can be invoked on it
 	 */
-	public boolean connectToServer(){
+	public void connectToServer(){
 		try {
 			Registry reg = LocateRegistry.getRegistry("localhost", 1099);
 			remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
-			System.out.println(remoteServerObject.createQuizId());
-			return true;
+			System.out.println("SetupClient Successfully connected to server");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
-
 }

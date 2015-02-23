@@ -38,7 +38,6 @@ public class HomePageGui {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBorder(BorderFactory.createEmptyBorder(60,60,60,60));
 		label.setForeground(Color.RED);
-
 		
 		makeQuizButton = new JButton("Click here to make a Quiz!");
 		playQuizButton = new JButton("Click here to play a Quiz!");
@@ -61,7 +60,6 @@ public class HomePageGui {
 		frame.getContentPane().add(BorderLayout.SOUTH,label);
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
 		frame.getContentPane().add(BorderLayout.CENTER, imagePanel);
-		
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);

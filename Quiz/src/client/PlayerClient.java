@@ -4,21 +4,22 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-
 import javax.swing.JOptionPane;
-
 import server.QuizRemoteInterface;
 import gui.*;
 import quiz.*;
 
 public class PlayerClient {
-	private QuizRemoteInterface remoteServerObject; 
-	private PlayerAttempt newPlayerAttempt;
+	private QuizRemoteInterface remoteServerObject; //the remote server Object on the registry
+	private PlayerAttempt newPlayerAttempt; 
 	private Quiz quizBeingPlayed;
 	private int playerScore;
 	private int questionNumber;
 	
 	
+	/**
+	 * Connects with the server object on the registry and launches the GUI for selecting a Quiz to play
+	 */
 	public void launch(){
 		connectToServer();
 		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getListItems());

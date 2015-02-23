@@ -1,13 +1,11 @@
 package gui;
 
-
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import client.*;
 
 public class EnterQuestionFrame {
@@ -20,6 +18,10 @@ public class EnterQuestionFrame {
 	private JTextField answer4TextField;
 	private ArrayList<JRadioButton> buttonList; //ArrayList containing 4 JRadioButtons
 
+	/*
+	 * Constructor sets the setUpClient linked to this instance 
+	 * When the user has inputs a Question, the GUI can send the data to the setUpClient to store
+	 */
 	public EnterQuestionFrame(SetUpClient client) {
 		this.client = client;
 	}
@@ -65,7 +67,6 @@ public class EnterQuestionFrame {
 		answer2TextField.setBounds(316, 197, 165, 20);
 		frame.getContentPane().add(answer2TextField);
 		
-		
 		answer3TextField = new JTextField();
 		answer3TextField.setColumns(10);
 		answer3TextField.setBounds(66, 265, 165, 20);
@@ -106,13 +107,14 @@ public class EnterQuestionFrame {
 		buttonList.add(answer3RadioButton);
 		buttonList.add(answer4RadioButton);
 		
-		
 		JButton nextQuestionButton = new JButton("Insert Another Question");
+		nextQuestionButton.setBackground(Color.YELLOW);
 		nextQuestionButton.setBounds(53, 315, 200, 66);
 		nextQuestionButton.addActionListener(new NextQuestionButtonActionListener());
 		frame.getContentPane().add(nextQuestionButton);
 		
 		JButton saveQuizButton = new JButton("Save Whole Quiz");
+		saveQuizButton.setBackground(Color.YELLOW);
 		saveQuizButton.setBounds(321, 315, 200, 66);
 		saveQuizButton.addActionListener(new SaveQuizButtonActionListener());
 		frame.getContentPane().add(saveQuizButton);
@@ -125,15 +127,15 @@ public class EnterQuestionFrame {
 	 * @return boolean : true if input is valid, false otherwise
 	 */
 	public boolean isInputValid(){
-		if (questionTextField.getText().length() == 0){
+		if (questionTextField.getText().length() == 0){ //checks the user has actually entered a question
 			JOptionPane.showMessageDialog(null, "Please enter a question");
 			return false;
 		}
-		else if (!answersInsertedCorrectly()){
+		else if (!answersInsertedCorrectly()){ //checks the user has entered 4 possible answers
 			JOptionPane.showMessageDialog(null, "Please enter 4 possible answers");
 			return false;
 		}
-		else if (!correctAnswerButtonSelected()){
+		else if (!correctAnswerButtonSelected()){ //checks the user has selected the correct answer
 			JOptionPane.showMessageDialog(null, "Please select a correct answer");
 			return false;
 		}
@@ -154,7 +156,6 @@ public class EnterQuestionFrame {
 		return true;
 	}
 	/**
-	 * 
 	 * @return boolean : returns true if 1 JRadtioButton has been selected
 	 */
 	public boolean correctAnswerButtonSelected(){
@@ -204,7 +205,7 @@ public class EnterQuestionFrame {
 				frame.setVisible(false);
 				frame.dispose();
 				JOptionPane.showMessageDialog(null, "Successfully entered question");
-				client.getQuizQuestions();
+				client.getQuizQuestions();  //relaunches the GUI for user to enter another question
 			}
 		}
 	}

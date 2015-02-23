@@ -3,10 +3,8 @@ package server;
 import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-
 import quiz.*;
 
 /**
@@ -17,9 +15,13 @@ import quiz.*;
  * 
  */
 public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterface  {
-
-HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	
+	private HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>(); //all the quizzes added by users
+	
+	/**
+	 * The QuizServer constructor. Reads from a file to get all the quizzes that have been added to the server by users. 
+	 * @throws RemoteException
+	 */
 	public QuizServer() throws RemoteException{
 		super();
 		File storageFile = new File("QuizStorage.txt");
@@ -36,20 +38,30 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		}
 	}
 
+	/**
+	 * Adds a quiz to the quizList and flushes the new quizList to a file
+	 */
 	public boolean addQuiz(Quiz quizToAdd, int id){
 		quizList.put(id, quizToAdd);
 		flush();
 		System.out.println("Added quiz to server");
 		return true;
 	}
-	 
+	 /**
+	  *  @param - the id of the requested quiz
+	  *  @return - the requested Quiz
+	  */
 	public Quiz getQuiz(int id){
 		return (Quiz) quizList.get(id);
 	}
+	/**
+	 *  @param - the id of the quiz to be deleted
+	 *  @return - 
+	 */
 	public boolean deleteQuiz(int id){
 		quizList.remove(id);
 		flush();
-		System.out.println("Deletred quiz from server");
+		System.out.println("Deleted quiz from server");
 		return true;
 	}
 	
@@ -58,7 +70,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	 * ID's and finds the smallest number which isn't already being used as an ID
 	 */
 	public int createQuizId(){
-		Set keySet = quizList.keySet();
+		Set<Integer> keySet = quizList.keySet();
 		int iD = 1;
 		boolean idFound = false;
 		while (!idFound){
@@ -72,6 +84,9 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 		return iD;
 	}
 	
+	/**
+	 * @return - the number of quizzes in the quizList
+	 */
 	public int getNumberOfQuizzes(){
 		return quizList.size();
 	}
@@ -79,21 +94,27 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	/**
 	 * Creates a String array where each Quiz in the Quiz Server 
 	 * is represented by a string consisting of its QuizName and QuizId
+	 * It is used by the playerClient to display the available quizzes in a JList
 	 */
 	public String[] getEachQuizString(){
 		int position = 0;
 		String[] result = new String[quizList.size()];
 			for (Quiz quiz: quizList.values()){
-				result[position] = new String("[Quiz id]: " + quiz.getQuizId() + " [Quiz name]: " + quiz.getName());
+				result[position] = new String("[Quiz id]: " + quiz.getQuizId() + "    [Quiz name]: " + quiz.getName());
 				position++;
 			}
 		return result;
 	}
+	
+	/**
+	 * Adds the record of a player Attempt to a quiz
+	 * @param - highScore - the data about a Player Attempt to be added
+	 * @param id - the id for the quiz that was played
+	 */
 	public void addHighScore(PlayerAttempt highScore, int id){
 		quizList.get(id).addPlayerAttempt(highScore);
 		flush();
 		System.out.println("Added player Attempt");
-		System.out.println(quizList.get(id));
 	}
 	
 	/**
@@ -101,7 +122,7 @@ HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>();
 	 */
 	private void flush(){
 		File storageFile = new File("QuizStorage.txt");
-		if (storageFile.exists()){
+		if (storageFile.exists()){ //if the file already exists, overwrite it with updated data
 			storageFile.delete();
 		}
 		try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(storageFile))){
