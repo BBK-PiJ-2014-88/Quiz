@@ -9,11 +9,10 @@ import java.awt.event.ActionListener;
 import client.PlayerClient;
 
 public class SelectQuizFrame {
-
 	private JFrame frame;
-	private PlayerClient client;
-	private String[] availableQuizzes;
-	private JList list;
+	private PlayerClient client; //the PlayerClient that launches this GUI
+	private String[] availableQuizzes; //the available Quizzes on the server that can be played
+	private JList list; //The JList for displaying the available quizzes
 	
 	public SelectQuizFrame(PlayerClient client, String[] availableQuizzes) {
 		this.client = client;

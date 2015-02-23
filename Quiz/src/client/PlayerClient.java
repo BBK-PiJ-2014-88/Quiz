@@ -22,7 +22,7 @@ public class PlayerClient {
 	 */
 	public void launch(){
 		connectToServer();
-		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getListItems());
+		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getAvailableQuizzes());
 		selectQuizGui.launch();
 	}
 	/*
@@ -30,7 +30,7 @@ public class PlayerClient {
 	 * of Quiz names and their id's to be sent as parameters to the JList in the selectGuizGui
 	 * where the user can select a Quiz
 	 */
-	public String[] getListItems(){
+	public String[] getAvailableQuizzes(){
 		String[] result = null;
 		try {
 			result = remoteServerObject.getEachQuizString();
