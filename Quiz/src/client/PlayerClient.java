@@ -68,6 +68,10 @@ public class PlayerClient {
 		}
 	}
 	
+	/**
+	 * Launches the GUI for a user to answer a question
+	 * Once all questions in a Quiz have been answered, displays a final message with the player score and saves the results to the server
+	 */
 	public void playNextQuestion(){
 		if (questionNumber < quizBeingPlayed.getNumberOfQuestions()){
 			Question question = quizBeingPlayed.getQuestions().get(questionNumber);
@@ -79,8 +83,10 @@ public class PlayerClient {
 			displayFinalMessage();
 			addPlayerAttemptToServer();
 		}
-
 	}
+	/**
+	 * adds a new PlayerAttempt to the server
+	 */
 	public void addPlayerAttemptToServer(){
 		newPlayerAttempt.setScore(playerScore);
 		try {
@@ -105,7 +111,7 @@ public class PlayerClient {
 	
 	/**
 	 * @param - the id for the quiz the user wants to see the high scores of
-	 * Creates 
+	 * Launches the GUI for viewing high scores. Involves creating a String array of high Scores as parameter for a JList 
 	 */
 	public void displayHighScore(int id){
 		Quiz quizWithScores;
