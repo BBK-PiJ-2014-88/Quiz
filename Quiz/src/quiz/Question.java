@@ -3,16 +3,15 @@ package quiz;
 import java.io.Serializable;
 
 public class Question implements Serializable{
-	String question;
-	String[] answers;
-	int correctAnswerNumber;
+	private String question;
+	private String[] answers;
+	private int correctAnswerNumber;
 	
 	public Question(String question, String[] answers, int correctQuestion){
 		this.question = question; 
 		this.answers = answers;
 		this.correctAnswerNumber = correctQuestion;
 	}
-	
 	public String getQuestion(){
 		return this.question;
 	}
@@ -27,7 +26,6 @@ public class Question implements Serializable{
 		for (String answer: answers){
 			answersString = answersString + " Answer: " +  answer;
 		}
-		return "Question: " + question + "answers: " + answersString;
-		
+		return "Question: " + question + " Answers: " + answersString;
 	}
 }

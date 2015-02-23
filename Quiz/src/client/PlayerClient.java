@@ -39,6 +39,11 @@ public class PlayerClient {
 		}
 		return result;	
 	}
+	
+	/**
+	 * @param id - the id of the quiz to delete
+	 * @return - boolean, true if the operation was successful
+	 */
 	public boolean deleteQuiz(int id){
 		boolean result = false;
 		try {
@@ -48,6 +53,11 @@ public class PlayerClient {
 		}
 		return result;
 	}
+	/**
+	 * @param name - the name of the player
+	 * @param quizId - the id of the quiz the player wants to play
+	 * creates a new playerAttempt for the player and their selected quiz
+	 */
 	public void createPlayerAttempt(String name, int quizId){
 		newPlayerAttempt = new PlayerAttempt(name);
 		try {
@@ -57,6 +67,7 @@ public class PlayerClient {
 			e.printStackTrace();
 		}
 	}
+	
 	public void playNextQuestion(){
 		if (questionNumber < quizBeingPlayed.getNumberOfQuestions()){
 			Question question = quizBeingPlayed.getQuestions().get(questionNumber);

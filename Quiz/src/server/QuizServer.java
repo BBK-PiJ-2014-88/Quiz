@@ -100,7 +100,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		int position = 0;
 		String[] result = new String[quizList.size()];
 			for (Quiz quiz: quizList.values()){
-				result[position] = new String("[Quiz id]: " + quiz.getQuizId() + "    [Quiz name]: " + quiz.getName());
+				result[position] = new String("[Quiz id]: " + quiz.getQuizId() + " [Quiz name]: " + quiz.getName());
 				position++;
 			}
 		return result;
