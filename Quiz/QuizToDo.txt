@@ -15,8 +15,6 @@ Read Head First Java Concurrency
 Read Big Java Concurrency
 Implement Concurrency
 
-Streams/Lambda's:
-Read PiJ Notes
-see if code can be improved
+
 
 
