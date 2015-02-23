@@ -14,7 +14,7 @@ public class PlayerClient {
 	private PlayerAttempt newPlayerAttempt; 
 	private Quiz quizBeingPlayed;
 	private int playerScore;
-	private int questionNumber;
+	private int questionNumber = 0;
 	
 	
 	/**
@@ -137,7 +137,7 @@ public class PlayerClient {
 		try {
 			Registry reg = LocateRegistry.getRegistry("localhost", 1099);
 			remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
-			System.out.println(remoteServerObject.createQuizId());
+			System.out.println("PlayerClient successfully connected to server");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {

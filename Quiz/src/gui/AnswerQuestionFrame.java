@@ -2,18 +2,16 @@ package gui;
 
 import client.PlayerClient;
 import quiz.Question;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 
 public class AnswerQuestionFrame {
 	private JFrame frame;
@@ -32,8 +30,8 @@ public class AnswerQuestionFrame {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * Sets up the GUI. Includes 4 JButtons for the 4 possible answers, a JLabel instructing what the user should do and a JLabel displaying
+	 * the current question in the Quiz
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -78,15 +76,21 @@ public class AnswerQuestionFrame {
 		answer4Button.setBounds(357, 311, 159, 78);
 		frame.getContentPane().add(answer4Button);
 		
-		JLabel lblPleaseSelectAn = new JLabel("Please select an answer from the options below");
-		lblPleaseSelectAn.setBackground(Color.YELLOW);
-		lblPleaseSelectAn.setForeground(Color.RED);
-		lblPleaseSelectAn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPleaseSelectAn.setBounds(50, 147, 429, 40);
-		frame.getContentPane().add(lblPleaseSelectAn);
+		JLabel selectAnswerLabel = new JLabel("Please select an answer from the options below");
+		selectAnswerLabel.setBackground(Color.YELLOW);
+		selectAnswerLabel.setForeground(Color.RED);
+		selectAnswerLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		selectAnswerLabel.setBounds(50, 147, 429, 40);
+		frame.getContentPane().add(selectAnswerLabel);
+		
+		//set the CorrectAnswerButtonActionListener and WrongAnswerActionListener depending on the correct Answer Number
 		setActionListeners(questionBeingPlayed.getCorrectAnswer());
 		frame.setVisible(true);
 	}
+	/**
+	 * Sets the CorrectAnswerButtonActionListener to the button with the correct answer and 
+	 * WrongAnswerButtonActionListener to the rest
+	 */
 	public void setActionListeners(String correctAnswer){
 		ArrayList<JButton> buttonList = new ArrayList<JButton>();
 		buttonList.add(answer1Button);
@@ -103,6 +107,9 @@ public class AnswerQuestionFrame {
 		}
 	}
 	
+	/**
+	 *Tells the user their answer was incorrect and displays the next Question
+	 */
 	class WrongAnswerButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			if (JOptionPane.showConfirmDialog(null, "Is this your final answer?") == JOptionPane.YES_OPTION){
@@ -113,6 +120,9 @@ public class AnswerQuestionFrame {
 			}
 		}
 	}
+	/**
+	 * Increases playerScore and displays the next question
+	 */
 	class CorrectAnswerButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -122,9 +132,7 @@ public class AnswerQuestionFrame {
 				frame.dispose();
 				client.increasePlayerScore();
 				client.playNextQuestion();
-			}		
-			
+			}			
 		}
-		
 	}
 }

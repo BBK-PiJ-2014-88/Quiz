@@ -5,14 +5,6 @@ Testing:
 -Do JUnit Tests
 -Testing concurrency
 
-Refactor:
-Add comments
-Make everything look pretty
-decouple classes 
-tidy up code
-sort out import statements
-do better MVC
-
 RMI:
 read RMI Java trails
 do PiJ RMI notes

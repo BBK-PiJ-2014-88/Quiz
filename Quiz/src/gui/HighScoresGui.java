@@ -1,13 +1,11 @@
 package gui;
 
-import java.awt.EventQueue;
 import javax.swing.*;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import client.PlayerClient;
-import java.awt.Component;
-
-
 
 public class HighScoresGui {
 
@@ -22,15 +20,13 @@ public class HighScoresGui {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * Sets up the GUI. Includes a JList that displays all the scores, a Scrollpane for scrolling through the scores and a JLabel title
 	 */
 	public void launch() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 605, 472);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		
 		JLabel titleLabel = new JLabel("High Scores");
 		titleLabel.setBounds(41, 32, 401, 56);

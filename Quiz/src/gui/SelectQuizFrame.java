@@ -14,6 +14,9 @@ public class SelectQuizFrame {
 	private String[] availableQuizzes; //the available Quizzes on the server that can be played
 	private JList list; //The JList for displaying the available quizzes
 	
+	/**
+	 * Adds the availableQuizzes to the JList to display. If there are none, displays a message
+	 */
 	public SelectQuizFrame(PlayerClient client, String[] availableQuizzes) {
 		this.client = client;
 		if (availableQuizzes.length != 0){
@@ -26,8 +29,10 @@ public class SelectQuizFrame {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * Launches the main JFrame and its components. 
+	 * Includes 3 buttons, 1 for playing as Quiz, 1 for deleting a Quiz and 1 for viewing a Quizzes high Scores
+	 * Includes a JList in a ScrollPane that displays all the available Quizzes.  
+	 * Includes a JLabel instructing the user what to do. 
 	 */
 	public void launch() {
 		frame = new JFrame();
@@ -77,6 +82,10 @@ public class SelectQuizFrame {
 		
 		frame.setVisible(true);
 	}
+	
+	/**
+	 * Checks the user has correctly selected a Quiz 
+	 */
 	public boolean isSelectionValid(){
 		if (list.isSelectionEmpty()){
 			JOptionPane.showMessageDialog(null, "Please select a Quiz");
@@ -89,7 +98,7 @@ public class SelectQuizFrame {
 		return true;
 	}
 	/*
-	 * Gets the id of the quiz the user wants to play or delete
+	 * Gets the id of the quiz the user wants to play, delete or view the high scores of
 	 * In the JList quiz information is displayed as 
 	 * "[Quiz id]: " + id + " [Quiz name]: " + quizName"
 	 * Therefore the id number starts is at position 11 to before [Quiz name]
@@ -98,25 +107,32 @@ public class SelectQuizFrame {
 		String quizInfo = (String) list.getSelectedValue();
 		int positionAfterId = quizInfo.indexOf(" [Quiz name]:");
 		int result = Integer.parseInt(quizInfo.substring(11, positionAfterId));
-		System.out.println(" got id: " + result);
 		return result;
 	}
+	
+	/**
+	 * Action button for DeleteButton. If user confirms they want to delete a quiz, the high scores for that quiz are displayed
+	 * and the quiz is deleted
+	 */
 	class DeleteButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isSelectionValid()){
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
 				if (result == JOptionPane.YES_OPTION){
+					client.displayHighScore(getQuizId());
 					if (client.deleteQuiz(getQuizId())){
-						JOptionPane.showMessageDialog(null, "Quiz successfully deleted");
+						JOptionPane.showMessageDialog(null, "Quiz successfully deleted. These were the high scores");
 						frame.setVisible(false);
 						frame.dispose();
-						client.launch();
 					}
 				}
 			}
 		}
 	}
+	/**
+	 * If the user has correctly selected a quiz, this button launches the GUI for a player to answer the Quiz questions
+	 */
 	class PlayQuizButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -133,6 +149,9 @@ public class SelectQuizFrame {
 			}
 		}
 	}
+	/**
+	 *If the user has correctly selected a quiz, this button launches the GUI for viewing high scores
+	 */
 	class ViewHighScoresActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
