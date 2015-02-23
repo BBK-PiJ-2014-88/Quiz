@@ -16,9 +16,6 @@ public class PlayerAttempt implements Comparable, Serializable {
 		String result = "Playername: " + playerName + " Score: " + score;
 		return result;
 	}
-	public String printScore(Quiz quiz, int numberOfCorrectAnswers){
-		return (numberOfCorrectAnswers + " / " + quiz.getNumberOfQuestions()); 
-	}
 	public int getScore(){
 		return this.score;
 	}

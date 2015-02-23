@@ -89,20 +89,29 @@ public class PlayerClient {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * displays a JOptionPane to the user showing their final score
+	 */
 	public void displayFinalMessage(){
 		JOptionPane.showMessageDialog(null, "Congratulations, your score was: " + playerScore + " out of " + quizBeingPlayed.getNumberOfQuestions());
 	}
 	
+	/**
+	 * increases the playerScore by 1
+	 */
 	public void increasePlayerScore(){
 		playerScore++;
 	}
+	
+	/**
+	 * @param - the id for the quiz the user wants to see the high scores of
+	 * Creates 
+	 */
 	public void displayHighScore(int id){
 		Quiz quizWithScores;
 		try {
 			quizWithScores = remoteServerObject.getQuiz(id);
-			System.out.println("got quiz");
 			String[] scoresToDisplay = new String[quizWithScores.getPlayerAttempts().size()];
-			System.out.println("size" + quizWithScores.getPlayerAttempts().size());
 			int position = 0;
 			for (PlayerAttempt attempt: quizWithScores.getPlayerAttempts()){
 				scoresToDisplay[position] = "Player name: " + attempt.getPlayerName() + " Score: " + attempt.getScore() + " / " + quizWithScores.getNumberOfQuestions();
@@ -114,20 +123,19 @@ public class PlayerClient {
 			e.printStackTrace();
 		}
 	}
-
-	public boolean connectToServer(){
+	
+	/**
+	 * connects to the QuizServer on the registry
+	 */
+	public void connectToServer(){
 		try {
 			Registry reg = LocateRegistry.getRegistry("localhost", 1099);
 			remoteServerObject = (QuizRemoteInterface) reg.lookup("quizServer");
 			System.out.println(remoteServerObject.createQuizId());
-			return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
-	
-
 }
