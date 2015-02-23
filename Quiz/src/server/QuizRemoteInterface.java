@@ -2,9 +2,14 @@ package server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
 import quiz.*;
 
+/**
+ * 
+ * @author Sergio
+ * The remote interface for the QuizServer object which will be placed in the registry for clients to use
+ * 
+ */
 public interface QuizRemoteInterface extends Remote {
 	public boolean addQuiz(Quiz quizToAdd, int id) throws RemoteException;
 	public boolean deleteQuiz(int id) throws RemoteException;

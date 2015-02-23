@@ -1,15 +1,13 @@
 package gui;
 
+import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.*;
 import client.*;
-
-import java.awt.event.*;
 
 /**
  * 
@@ -68,8 +66,6 @@ public class HomePageGui {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
 		frame.setVisible(true);
-		
-		
 	}
 	
 	/**

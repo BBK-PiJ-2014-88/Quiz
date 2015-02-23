@@ -29,5 +29,4 @@ public class QuizLauncher {
 			System.out.println("Remote Exception occured");
 		} 
 	}
-
 }
