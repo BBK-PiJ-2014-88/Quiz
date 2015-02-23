@@ -23,7 +23,7 @@ public class QuizLauncher {
 		try {
 			Registry reg = LocateRegistry.createRegistry(1099);
 			reg.rebind("quizServer", new QuizServer());
-			System.out.println("Server set up completed");
+			System.out.println("Server set up completed. Do not close the homepage");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			System.out.println("Remote Exception occured");

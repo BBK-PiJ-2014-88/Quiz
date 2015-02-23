@@ -1,11 +1,8 @@
 package unitTests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
-
 import quiz.*;
-
 import org.junit.*;
 
 public class QuizTest {
@@ -46,5 +43,20 @@ public class QuizTest {
 	public void testGetId(){
 		assertEquals(1, testerQuiz.getQuizId());
 	}
-
+	
+	//makes 2 player Attempts, adds them to a quiz. quiz.getPlayerAttempts() is then invoked and it is expected
+	//that the returned PlayerAttempts are in order from highest to lowest score
+	@Test
+	public void testPlayerAttemptMethods(){
+		PlayerAttempt attempt = new PlayerAttempt("Andrew");
+		attempt.setScore(2);
+		PlayerAttempt attempt2 = new PlayerAttempt("John");
+		attempt2.setScore(5);
+		testerQuiz.addPlayerAttempt(attempt);
+		testerQuiz.addPlayerAttempt(attempt2);
+		ArrayList<PlayerAttempt> expected = new ArrayList<PlayerAttempt>();
+		expected.add(attempt2);
+		expected.add(attempt);
+		assertEquals(expected, testerQuiz.getPlayerAttempts());
+	}
 }
