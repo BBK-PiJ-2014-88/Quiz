@@ -62,6 +62,9 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 */
 	public boolean deleteQuiz(int id){
 		if (isQuizCurrentlyBeingPlayed(id)){
+			for (Integer ids: this.quizzesCurrentlyBeingPlayed){
+				System.out.println("ids" + ids);
+			}
 			return false;
 		}
 		else{
@@ -78,10 +81,10 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	private boolean isQuizCurrentlyBeingPlayed(Integer id){
 		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
 			if (id == quizBeingPlayedId){
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -141,12 +144,20 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 */
 	public void addCurrentlyBeingPlayedQuiz(Integer id){
 		this.quizzesCurrentlyBeingPlayed.add(id);
+		System.out.println("Added quiz + " + id + " to currently being played quizlist");
+		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
+			System.out.println("ids " + ids);
+		}
 	}
 	/**
 	 * removes an id for a quiz from the list of quizzes currently being played once a user has finished playing
 	 */
 	public void removeCurrentlyBeingPlayedQuiz(Integer id){
 		this.quizzesCurrentlyBeingPlayed.remove(id);
+		System.out.println("Removed quiz + " + id + " to currently being played quizlist");
+		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
+			System.out.println("ids " + ids);
+		}
 	}
 	/**
 	 * returns the list of quizzes currently being played
