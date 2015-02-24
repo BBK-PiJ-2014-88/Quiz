@@ -81,6 +81,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 				idFound = true;
 			}
 		}
+		System.out.println(iD);
 		return iD;
 	}
 	

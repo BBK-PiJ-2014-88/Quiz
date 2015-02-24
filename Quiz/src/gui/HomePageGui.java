@@ -71,8 +71,7 @@ public class HomePageGui {
 	 */
 	class PlayQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			PlayerClient playQuizClient = new PlayerClient();
-			playQuizClient.launch();
+			new PlayerClient().launch();
 			
 		}
 	}
@@ -81,8 +80,7 @@ public class HomePageGui {
 	 */
 	class MakeQuizButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			SetUpClient makeQuizClient = new SetUpClient();
-			makeQuizClient.launch();
+			new SetUpClient().launch();
 		}
 	}
 
