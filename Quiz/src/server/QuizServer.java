@@ -79,7 +79,9 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 * @return true if the quiz is currently being played, false otherwise
 	 */
 	private boolean isQuizCurrentlyBeingPlayed(Integer id){
+		System.out.println("checking if quiz is being played");
 		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
+			System.out.println("id being played" + quizBeingPlayedId);
 			if (id == quizBeingPlayedId){
 				return true;
 			}
