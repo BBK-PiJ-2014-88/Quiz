@@ -22,8 +22,8 @@ public class PlayerClient {
 	 */
 	public void launch(){
 		connectToServer();
-		SelectQuizFrame selectQuizGui = new SelectQuizFrame(this, getAvailableQuizzes());
-		selectQuizGui.launch();
+		new SelectQuizFrame(this, getAvailableQuizzes()).launch();
+		System.out.println("i am " + this); 
 	}
 	/*
 	 * Gets all the Quizzes stored in the Quiz Server and creates a String array
@@ -76,8 +76,7 @@ public class PlayerClient {
 	public void playNextQuestion(){
 		if (questionNumber < quizBeingPlayed.getNumberOfQuestions()){
 			Question question = quizBeingPlayed.getQuestions().get(questionNumber);
-			AnswerQuestionFrame answerQuestionGui = new AnswerQuestionFrame(this, question, questionNumber +1);
-			answerQuestionGui.launch();
+			new AnswerQuestionFrame(this, question, questionNumber +1).launch();
 			questionNumber++;
 		}
 		else{

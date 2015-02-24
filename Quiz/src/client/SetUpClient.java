@@ -28,7 +28,7 @@ public class SetUpClient {
 	public void createQuiz(String quizName){
 		try {
 			newQuiz = new Quiz(quizName, remoteServerObject.createQuizId());
-			System.out.println("Successfully created a quiz with the name: " + quizName);
+			System.out.println("Successfully created a quiz with the name: " + quizName + " with QuizId: " + newQuiz.getQuizId());
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
