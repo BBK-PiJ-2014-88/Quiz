@@ -118,6 +118,24 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		flush();
 		System.out.println("Added player Attempt");
 	}
+	/**
+	 * Adds the id of a quiz to list of quizzes currently being played
+	 */
+	public void addCurrentlyBeingPlayedQuiz(Integer id){
+		this.quizzesCurrentlyBeingPlayed.add(id);
+	}
+	/**
+	 * removes an id for a quiz from the list of quizzes currently being played once a user has finished playing
+	 */
+	public void removeCurrentlyBeingPlayedQuiz(Integer id){
+		this.quizzesCurrentlyBeingPlayed.remove(id);
+	}
+	/**
+	 * returns the list of quizzes currently being played
+	 */
+	public ArrayList<Integer> getCurrentlyBeingPlayedQuizList(){
+		return this.quizzesCurrentlyBeingPlayed;
+	}
 	
 	/**
 	 * Writes the QuizList to a file
