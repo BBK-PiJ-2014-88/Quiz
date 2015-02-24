@@ -19,7 +19,7 @@ public interface QuizRemoteInterface extends Remote {
 	public int createQuizId() throws RemoteException;
 	public String[] getEachQuizString() throws RemoteException;
 	public void addHighScore(PlayerAttempt highScore, int id) throws RemoteException;
-	public void addCurrentlyBeingPlayedQuiz(Integer id);
-	public void removeCurrentlyBeingPlayedQuiz(Integer id);
-	public ArrayList<Integer> getCurrentlyBeingPlayedQuizList();
+	public void addCurrentlyBeingPlayedQuiz(Integer id) throws RemoteException;
+	public void removeCurrentlyBeingPlayedQuiz(Integer id) throws RemoteException;
+	public ArrayList<Integer> getCurrentlyBeingPlayedQuizList() throws RemoteException;
 }
