@@ -62,6 +62,7 @@ public class PlayerClient {
 		newPlayerAttempt = new PlayerAttempt(name);
 		try {
 			quizBeingPlayed = remoteServerObject.getQuiz(quizId);
+			remoteServerObject.addCurrentlyBeingPlayedQuiz(quizId);
 			playNextQuestion();
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -82,6 +83,11 @@ public class PlayerClient {
 		else{
 			displayFinalMessage();
 			addPlayerAttemptToServer();
+			try{
+				remoteServerObject.removeCurrentlyBeingPlayedQuiz(quizBeingPlayed.getQuizId());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	/**

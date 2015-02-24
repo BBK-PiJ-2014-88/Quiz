@@ -67,7 +67,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		else{
 			quizList.remove(id);
 			flush();
-			System.out.println("Deleted quiz from server");
+			System.out.println("Deleted quiz " + id + " from server");
 			return true;
 		}
 	}
@@ -75,7 +75,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 * @param id of the quiz
 	 * @return true if the quiz is currently being played, false otherwise
 	 */
-	private boolean isQuizCurrentlyBeingPlayed(int id){
+	private boolean isQuizCurrentlyBeingPlayed(Integer id){
 		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
 			if (id == quizBeingPlayedId){
 				return false;

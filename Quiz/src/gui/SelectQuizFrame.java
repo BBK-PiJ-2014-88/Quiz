@@ -126,6 +126,9 @@ public class SelectQuizFrame {
 						frame.setVisible(false);
 						frame.dispose();
 					}
+					else{
+						JOptionPane.showMessageDialog(null, "Somebody else is currently playing this quiz so it cannot be deleted at the moment");
+					}
 				}
 			}
 		}
