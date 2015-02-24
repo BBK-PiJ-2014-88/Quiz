@@ -56,7 +56,7 @@ public class PlayerClient {
 	/**
 	 * @param name - the name of the player
 	 * @param quizId - the id of the quiz the player wants to play
-	 * creates a new playerAttempt for the player and their selected quiz
+	 * creates a new playerAttempt for the player and their selected quiz. 
 	 */
 	public void createPlayerAttempt(String name, int quizId){
 		newPlayerAttempt = new PlayerAttempt(name);

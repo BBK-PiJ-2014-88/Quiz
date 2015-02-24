@@ -37,7 +37,7 @@ public class AnswerQuestionFrame {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 11));
 		frame.setBounds(100, 100, 607, 464);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel questionLabel = new JLabel(questionBeingPlayed.getQuestion());
