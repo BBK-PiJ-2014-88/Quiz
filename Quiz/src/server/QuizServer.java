@@ -60,9 +60,22 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 *  @return - 
 	 */
 	public boolean deleteQuiz(int id){
-		quizList.remove(id);
-		flush();
-		System.out.println("Deleted quiz from server");
+		if (isQuizCurrentlyBeingPlayed(id)){
+			return false;
+		}
+		else{
+			quizList.remove(id);
+			flush();
+			System.out.println("Deleted quiz from server");
+			return true;
+		}
+	}
+	private boolean isQuizCurrentlyBeingPlayed(int id){
+		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
+			if (id == quizBeingPlayedId){
+				return false;
+			}
+		}
 		return true;
 	}
 	
