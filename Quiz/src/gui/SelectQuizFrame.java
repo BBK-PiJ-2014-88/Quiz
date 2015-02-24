@@ -120,9 +120,11 @@ public class SelectQuizFrame {
 			if (isSelectionValid()){
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
 				if (result == JOptionPane.YES_OPTION){
-					client.displayHighScore(getQuizId());
+					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Would you like to view the high scores before deleting the quiz")){
+						client.displayHighScore(getQuizId());
+					}
 					if (client.deleteQuiz(getQuizId())){
-						JOptionPane.showMessageDialog(null, "Quiz successfully deleted. These were the high scores");
+						JOptionPane.showMessageDialog(null, "Quiz successfully deleted.");
 						frame.setVisible(false);
 						frame.dispose();
 					}
