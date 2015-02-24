@@ -82,7 +82,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		System.out.println("checking if quiz is being played");
 		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
 			System.out.println("id being played" + quizBeingPlayedId);
-			if (id == quizBeingPlayedId){
+			if (id.equals(quizBeingPlayedId)){
 				return true;
 			}
 		}
