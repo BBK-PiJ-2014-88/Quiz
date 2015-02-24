@@ -143,20 +143,26 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 * Adds the id of a quiz to list of quizzes currently being played
 	 */
 	public void addCurrentlyBeingPlayedQuiz(Integer id){
+		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
+			System.out.println("ids before entry " + ids);
+		}
 		this.quizzesCurrentlyBeingPlayed.add((Integer) id);
 		System.out.println("Added quiz + " + id + " to currently being played quizlist");
 		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids " + ids);
+			System.out.println("ids after entry " + ids);
 		}
 	}
 	/**
 	 * removes an id for a quiz from the list of quizzes currently being played once a user has finished playing
 	 */
 	public void removeCurrentlyBeingPlayedQuiz(Integer id){
+		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
+			System.out.println("ids before removal" + ids);
+		}
 		this.quizzesCurrentlyBeingPlayed.remove((Integer)id);
 		System.out.println("Removed quiz + " + id + " to currently being played quizlist");
 		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids " + ids);
+			System.out.println("ids after removal" + ids);
 		}
 	}
 	/**
