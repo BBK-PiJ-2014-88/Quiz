@@ -9,7 +9,6 @@ public class Quiz implements Serializable {
 	private int quizId;
 	private ArrayList<Question> quizQuestions = new ArrayList<Question>(); //the questions for this Quiz
 	private ArrayList<PlayerAttempt> highScores = new ArrayList<PlayerAttempt>(); //records of playerAttempts for this quiz
-	private boolean currentlyBeingPlayed;
 	
 	public Quiz(String name, int Id){
 		this.quizName = name;
@@ -55,12 +54,6 @@ public class Quiz implements Serializable {
 	 */
 	public String getName(){
 		return this.quizName;
-	}
-	/**
-	 * method for setting the value of the boolean currentlyBeingPlayed. True is the quiz is being played, false otherwise
-	 */
-	public void setCurrentBeingPlayed(boolean status){
-		this.currentlyBeingPlayed = status;
 	}
 	/**
 	 * returns all the playerAttempts for a quiz

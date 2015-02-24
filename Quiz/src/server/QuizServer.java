@@ -3,6 +3,7 @@ package server;
 import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import quiz.*;
@@ -17,7 +18,7 @@ import quiz.*;
 public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterface  {
 	
 	private HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>(); //all the quizzes added by users
-	
+	private ArrayList<Integer> quizzesCurrentlyBeingPlayed = new ArrayList<Integer>(); //the quizzes currently being played
 	/**
 	 * The QuizServer constructor. Reads from a file to get all the quizzes that have been added to the server by users. 
 	 * @throws RemoteException
