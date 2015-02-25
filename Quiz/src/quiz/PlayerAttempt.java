@@ -9,6 +9,25 @@ public class PlayerAttempt implements Comparable, Serializable {
 	public PlayerAttempt(String playerName){
 		this.playerName = playerName;
 	}
+
+	/**
+	 * returns the players score
+	 */
+	public int getScore(){
+		return this.score;
+	}
+	/**
+	 * sets the players score
+	 */
+	public void setScore(int score){
+		this.score = score;
+	}
+	/**
+	 * returns the players name
+	 */
+	public String getPlayerName(){
+		return this.playerName;
+	}
 	/**
 	 * toString method used for testing
 	 */
@@ -16,20 +35,11 @@ public class PlayerAttempt implements Comparable, Serializable {
 		String result = "Playername: " + playerName + " Score: " + score;
 		return result;
 	}
-	public int getScore(){
-		return this.score;
-	}
 	/**
 	 * Used for storing PlayerAttempts from Highest to Lowest score
 	 */
 	public int compareTo(Object other){
 		PlayerAttempt otherPlayerAttempt = (PlayerAttempt) other;
 		return  otherPlayerAttempt.getScore() - this.getScore();
-	}
-	public void setScore(int score){
-		this.score = score;
-	}
-	public String getPlayerName(){
-		return this.playerName;
 	}
 }
