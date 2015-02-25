@@ -2,14 +2,18 @@ package gui;
 
 import client.PlayerClient;
 import quiz.Question;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+
+import java.awt.event.WindowEvent;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 
@@ -37,7 +41,7 @@ public class AnswerQuestionFrame {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 11));
 		frame.setBounds(100, 100, 607, 464);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel questionLabel = new JLabel(questionBeingPlayed.getQuestion());
@@ -85,6 +89,23 @@ public class AnswerQuestionFrame {
 		
 		//set the CorrectAnswerButtonActionListener and WrongAnswerActionListener depending on the correct Answer Number
 		setActionListeners(questionBeingPlayed.getCorrectAnswer());
+		
+		/**
+		 * When a user closes an AnswerQuestionFrame midway through playing a quiz, the quiz must be removed from
+		 * the currentlyBeingPlayedQuizList to stop it being blocked for deletion by other clients
+		 */
+		frame.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent windowEvent){
+				if (JOptionPane.showConfirmDialog(null, "Do you really want to close? Your score will not be saved") == JOptionPane.YES_OPTION){
+					client.removeQuizFromCurrentlyBeingPlayedQuizList();
+					frame.setVisible(false);
+					frame.dispose();
+				}
+			}
+		} );
+		
+		
 		frame.setVisible(true);
 	}
 	/**
@@ -135,4 +156,6 @@ public class AnswerQuestionFrame {
 			}			
 		}
 	}
+	
+	
 }

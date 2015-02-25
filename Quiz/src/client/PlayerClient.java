@@ -82,11 +82,17 @@ public class PlayerClient {
 		else{
 			displayFinalMessage();
 			addPlayerAttemptToServer();
-			try{
-				remoteServerObject.removeCurrentlyBeingPlayedQuiz(quizBeingPlayed.getQuizId());
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
+			removeQuizFromCurrentlyBeingPlayedQuizList();
+		}
+	}
+	/**
+	 * removes the Quiz from the list of currentlyBeingPlayedQuizzes
+	 */
+	public void removeQuizFromCurrentlyBeingPlayedQuizList(){
+		try{
+			remoteServerObject.removeCurrentlyBeingPlayedQuiz(quizBeingPlayed.getQuizId());
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
 	}
 	/**
