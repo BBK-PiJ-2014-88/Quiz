@@ -113,7 +113,23 @@ public class PlayerClient {
 	public void increasePlayerScore(){
 		playerScore++;
 	}
-	
+	/**
+	 * returns true if the quiz with the supplied id exists, false otherwise
+	 * This method is used by the action Listeners of the 3 buttons for playing, deleting or viewing the high scores of a quiz
+	 * One client could be viewing a list of available quizzes, whilst another concurrent client may delete a quiz on that list
+	 * Therefore, this method is called by the actionListeners first to make sure one of the available quizzes being displayed
+	 * hasn't been deleted
+	 */
+	public boolean doesQuizExist(int id){
+		try {
+			if (remoteServerObject.getQuiz(id) == null){
+				return false;
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 	/**
 	 * @param - the id for the quiz the user wants to see the high scores of
 	 * Launches the GUI for viewing high scores. Involves creating a String array of high Scores as parameter for a JList 

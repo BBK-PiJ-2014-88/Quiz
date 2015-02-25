@@ -97,6 +97,7 @@ public class SelectQuizFrame {
 		}
 		return true;
 	}
+
 	/*
 	 * Gets the id of the quiz the user wants to play, delete or view the high scores of
 	 * In the JList quiz information is displayed as 
@@ -111,26 +112,31 @@ public class SelectQuizFrame {
 	}
 	
 	/**
-	 * Action button for DeleteButton. If user confirms they want to delete a quiz, the high scores for that quiz are displayed
-	 * and the quiz is deleted
+	 * ActionListener for DeleteButton. If user confirms they want to delete a quiz and the quiz hasn't already been deleted,
+	 * the quiz is deleted. The user is also given the option of viewing a Quizzes high scores before deleting it
 	 */
 	class DeleteButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (isSelectionValid()){
-				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
-				if (result == JOptionPane.YES_OPTION){
-					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Would you like to view the high scores before deleting the quiz")){
-						client.displayHighScore(getQuizId());
+				if(client.doesQuizExist(getQuizId())){ //checks a concurrent client hasn't deleted the quiz
+					int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Quiz?");
+					if (result == JOptionPane.YES_OPTION){
+						if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Would you like to view the high scores before deleting the quiz")){
+							client.displayHighScore(getQuizId());
+						}
+						if (client.deleteQuiz(getQuizId())){
+							JOptionPane.showMessageDialog(null, "Quiz successfully deleted.");
+							frame.setVisible(false);
+							frame.dispose();
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Somebody else is currently playing this quiz so it cannot be deleted at the moment");
+						}
 					}
-					if (client.deleteQuiz(getQuizId())){
-						JOptionPane.showMessageDialog(null, "Quiz successfully deleted.");
-						frame.setVisible(false);
-						frame.dispose();
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Somebody else is currently playing this quiz so it cannot be deleted at the moment");
-					}
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "This quiz has already been deleted");
 				}
 			}
 		}
@@ -142,26 +148,36 @@ public class SelectQuizFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(isSelectionValid()){
-				String name = JOptionPane.showInputDialog("Insert Player name: ");
-				if (name.length() == 0){
-					JOptionPane.showMessageDialog(null, "Please enter a name");
+				if(client.doesQuizExist(getQuizId())){
+					String name = JOptionPane.showInputDialog("Insert Player name: ");
+					if (name.length() == 0){
+						JOptionPane.showMessageDialog(null, "Please enter a name");
+					}
+					else{
+						frame.setVisible(false);
+						frame.dispose();
+						client.createPlayerAttempt(name, getQuizId()); 
+					}
 				}
 				else{
-					frame.setVisible(false);
-					frame.dispose();
-					client.createPlayerAttempt(name, getQuizId()); 
+					JOptionPane.showMessageDialog(null,  "This quiz has been deleted by another client");
 				}
 			}
 		}
 	}
 	/**
-	 *If the user has correctly selected a quiz, this button launches the GUI for viewing high scores
+	 *If the user has correctly selected a quiz and the Quiz hasn't been deleted, this button launches the GUI for viewing high scores
 	 */
 	class ViewHighScoresActionListener implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent arg0) { //checks a concurrent client hasn't deleted the quiz
 			if(isSelectionValid()){
-				client.displayHighScore(getQuizId());
+				if (client.doesQuizExist(getQuizId())){
+					client.displayHighScore(getQuizId());
+				}
+				else{
+					JOptionPane.showMessageDialog(null,  "This quiz has been deleted");
+				}
 			}
 		}
 	}
