@@ -168,13 +168,6 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		}
 	}
 	/**
-	 * returns the list of quizzes currently being played
-	 */
-	public ArrayList<Integer> getCurrentlyBeingPlayedQuizList(){
-		return this.quizzesCurrentlyBeingPlayed;
-	}
-	
-	/**
 	 * Writes the QuizList to a file
 	 */
 	private void flush(){
