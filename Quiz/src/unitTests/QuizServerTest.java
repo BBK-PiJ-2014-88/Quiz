@@ -34,7 +34,8 @@ public class QuizServerTest {
 		testerQuiz2.addQuestion(question4);
 	}
 	
-	@Test
+	
+	@Test  //tests addQuiz, getQuiz and DeleteQuiz
 	public void testAddGetDeleteQuiz() {
 		int x = serverTester.createQuizId();
 		serverTester.addQuiz(testerQuiz1, x);
@@ -42,13 +43,29 @@ public class QuizServerTest {
 		assertEquals(serverTester.deleteQuiz(x), true);
 	}
 	
-	@Test
+	@Test //tests that a quiz cannot be deleted when in the currentlyBeingPlayedList and can be deleted when not being played
 	public void testDeleteCurrentlyBeingPlayedQuiz(){
+		//a quiz cannot be deleted when it is currently being played
 		serverTester.addQuiz(testerQuiz1, 100);
 		serverTester.addCurrentlyBeingPlayedQuiz(100);
 		assertEquals(false, serverTester.deleteQuiz(100));
+		//a quiz can be deleted when it is currently being played
 		serverTester.removeCurrentlyBeingPlayedQuiz(100);
 		assertEquals(true, serverTester.deleteQuiz(100));
+		//if the same quiz is being played by 2 players and 1 player finishes, the quiz should not be able to be deleted as one player is still playing it
+		serverTester.addQuiz(testerQuiz1, 100);
+		serverTester.addCurrentlyBeingPlayedQuiz(100);
+		serverTester.addCurrentlyBeingPlayedQuiz(100);
+		serverTester.removeCurrentlyBeingPlayedQuiz(100);
+		assertEquals(false, serverTester.deleteQuiz(100));
 	}
-
+	
+	//tests whether addHighScore successfully adds a PlayerAttempt to a quiz
+	@Test
+	public void testAddHighScore(){
+		serverTester.addQuiz(testerQuiz2, 100);
+		PlayerAttempt attempt = new PlayerAttempt("Harry");
+		serverTester.addHighScore(attempt, 100);
+		assertEquals(attempt, serverTester.getQuiz(100).getPlayerAttempts().get(0));
+	}
 }
