@@ -136,7 +136,7 @@ public class SelectQuizFrame {
 					}
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "This quiz has already been deleted");
+					JOptionPane.showMessageDialog(null, "This quiz has been deleted by another client");
 				}
 			}
 		}
@@ -176,7 +176,7 @@ public class SelectQuizFrame {
 					client.displayHighScore(getQuizId());
 				}
 				else{
-					JOptionPane.showMessageDialog(null,  "This quiz has been deleted");
+					JOptionPane.showMessageDialog(null,  "This quiz has been deleted by another client");
 				}
 			}
 		}
