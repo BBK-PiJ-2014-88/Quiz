@@ -93,7 +93,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 * Creates a unique ID to assign to a new Quiz created by the user. Iterates over the existing
 	 * ID's and finds the smallest number which isn't already being used as an ID
 	 */
-	public int createQuizId(){
+	public synchronized int createQuizId(){
 		Set<Integer> keySet = quizList.keySet();
 		int iD = 1;
 		boolean idFound = false;

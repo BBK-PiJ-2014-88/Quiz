@@ -10,9 +10,15 @@ public class Quiz implements Serializable {
 	private ArrayList<Question> quizQuestions = new ArrayList<Question>(); //the questions for this Quiz
 	private ArrayList<PlayerAttempt> highScores = new ArrayList<PlayerAttempt>(); //records of playerAttempts for this quiz
 	
-	public Quiz(String name, int Id){
+	public Quiz(String name){
 		this.quizName = name;
-		this.quizId = Id;
+	}
+	
+	/**
+	 * @param id - sets the id for the quiz
+	 */
+	public void setId(int id){
+		this.quizId = id;
 	}
 	
 	/**

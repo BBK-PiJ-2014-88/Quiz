@@ -26,19 +26,15 @@ public class SetUpClient {
 	 * Involves invoking createQuizId() method on the QuizServer
 	 */
 	public void createQuiz(String quizName){
-		try {
-			newQuiz = new Quiz(quizName, remoteServerObject.createQuizId());
-			System.out.println("Successfully created a quiz with the name: " + quizName + " with QuizId: " + newQuiz.getQuizId());
-			
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+			newQuiz = new Quiz(quizName);
+			System.out.println("Successfully created a quiz with the name: " + quizName);
 	}
 	/**
 	 * Adds a Quiz to the Quiz Server so a PlayerClient can play the quiz
 	 */
 	public void addQuizToServer(){
 		try {
+			newQuiz.setId(remoteServerObject.createQuizId());
 			remoteServerObject.addQuiz(newQuiz, newQuiz.getQuizId());
 		} catch (RemoteException e) {
 			e.printStackTrace();
