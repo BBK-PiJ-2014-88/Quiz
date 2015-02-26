@@ -36,7 +36,7 @@ public class Question implements Serializable{
 	public String toString(){
 		String answersString = "";
 		for (String answer: answers){
-			answersString = answersString + " Answer: " +  answer;
+			answersString = answersString + " " + answer + " ";
 		}
 		return "Question: " + question + " Answers: " + answersString;
 	}
