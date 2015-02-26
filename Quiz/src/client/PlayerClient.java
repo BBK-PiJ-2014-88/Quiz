@@ -4,7 +4,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+
 import javax.swing.JOptionPane;
+
 import server.QuizRemoteInterface;
 import gui.*;
 import quiz.*;
@@ -23,7 +25,6 @@ public class PlayerClient {
 	public void launch(){
 		connectToServer();
 		new SelectQuizFrame(this, getAvailableQuizzes()).launch();
-		System.out.println("i am " + this); 
 	}
 	/*
 	 * Gets all the Quizzes stored in the Quiz Server and creates a String array
@@ -124,7 +125,7 @@ public class PlayerClient {
 	 * This method is used by the action Listeners of the 3 buttons for playing, deleting or viewing the high scores of a quiz
 	 * One client could be viewing a list of available quizzes, whilst another concurrent client may delete a quiz on that list
 	 * Therefore, this method is called by the actionListeners first to make sure one of the available quizzes being displayed
-	 * hasn't been deleted
+	 * hasn't been deleted by a concurrent client
 	 */
 	public boolean doesQuizExist(int id){
 		try {
@@ -150,8 +151,7 @@ public class PlayerClient {
 				scoresToDisplay[position] = "Player name: " + attempt.getPlayerName() + " Score: " + attempt.getScore() + " / " + quizWithScores.getNumberOfQuestions();
 				position++;
 			}
-			HighScoresGui viewScoresGui = new HighScoresGui(this, scoresToDisplay);
-			viewScoresGui.launch();
+			new HighScoresGui(this, scoresToDisplay).launch();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -167,8 +167,10 @@ public class PlayerClient {
 			System.out.println("PlayerClient successfully connected to server");
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			System.out.println("PlayerClient Connection failed. Please set up the server first");
 		} catch (NotBoundException e) {
 			e.printStackTrace();
+			System.out.println("PlayerClient Connection failed. Please set up the server first");
 		}
 	}
 }

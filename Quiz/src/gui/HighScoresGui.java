@@ -1,10 +1,8 @@
 package gui;
 
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Font;
-
 import client.PlayerClient;
 
 public class HighScoresGui {

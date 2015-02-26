@@ -65,8 +65,10 @@ public class SetUpClient {
 			System.out.println("SetupClient Successfully connected to server");
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			System.out.println("SetUpClient Connection failed. Please set up the server first");
 		} catch (NotBoundException e) {
 			e.printStackTrace();
+			System.out.println("SetUpClient Connection failed. Please set up the server first");
 		}
 	}
 }

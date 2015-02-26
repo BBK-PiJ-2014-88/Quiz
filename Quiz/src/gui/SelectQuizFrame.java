@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.EventQueue;
+
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
@@ -76,7 +76,7 @@ public class SelectQuizFrame {
 		scrollPane.setBounds(29, 75, 298, 317);
 		frame.getContentPane().add(scrollPane);
 		
-		list = new JList(availableQuizzes);
+		list = new JList(availableQuizzes);  //displays all the available quizzes
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		
@@ -102,7 +102,7 @@ public class SelectQuizFrame {
 	 * Gets the id of the quiz the user wants to play, delete or view the high scores of
 	 * In the JList quiz information is displayed as 
 	 * "[Quiz id]: " + id + " [Quiz name]: " + quizName"
-	 * Therefore the id number starts is at position 11 to before [Quiz name]
+	 * Therefore the id number starts at position 11 to before [Quiz name]
 	 */
 	public int getQuizId(){
 		String quizInfo = (String) list.getSelectedValue();
@@ -130,7 +130,7 @@ public class SelectQuizFrame {
 							frame.setVisible(false);
 							frame.dispose();
 						}
-						else{
+						else{ //if somebody else is playing the quiz, deleteQuiz will return false
 							JOptionPane.showMessageDialog(null, "Somebody else is currently playing this quiz so it cannot be deleted at the moment");
 						}
 					}
@@ -148,7 +148,7 @@ public class SelectQuizFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(isSelectionValid()){
-				if(client.doesQuizExist(getQuizId())){
+				if(client.doesQuizExist(getQuizId())){ //checks a concurrent client hasn't deleted the quiz
 					String name = JOptionPane.showInputDialog("Insert Player name: ");
 					if (name.length() == 0){
 						JOptionPane.showMessageDialog(null, "Please enter a name");
@@ -170,9 +170,9 @@ public class SelectQuizFrame {
 	 */
 	class ViewHighScoresActionListener implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent arg0) { //checks a concurrent client hasn't deleted the quiz
+		public void actionPerformed(ActionEvent arg0) { 
 			if(isSelectionValid()){
-				if (client.doesQuizExist(getQuizId())){
+				if (client.doesQuizExist(getQuizId())){ //checks a concurrent client hasn't deleted the quiz
 					client.displayHighScore(getQuizId());
 				}
 				else{

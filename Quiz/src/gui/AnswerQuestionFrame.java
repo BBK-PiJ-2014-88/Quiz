@@ -19,9 +19,9 @@ import java.util.ArrayList;
 
 public class AnswerQuestionFrame {
 	private JFrame frame;
-	private PlayerClient client;
+	private PlayerClient client; //the PlayerClient that launched this quiz
 	private Question questionBeingPlayed;
-	private int questionNumber;
+	private int questionNumber; //the question number currently being played by the user
 	private JButton answer1Button;
 	private JButton answer2Button;
 	private JButton answer3Button;
@@ -44,13 +44,14 @@ public class AnswerQuestionFrame {
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel questionLabel = new JLabel(questionBeingPlayed.getQuestion());
+		JLabel questionLabel = new JLabel(questionBeingPlayed.getQuestion()); 
 		questionLabel.setBackground(Color.YELLOW);
 		questionLabel.setForeground(new Color(0, 0, 0));
 		questionLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		questionLabel.setBounds(40, 71, 517, 65);
 		frame.getContentPane().add(questionLabel);
 		
+		//shows the user what question number is being
 		JLabel questionNumberLabel = new JLabel("Question Number: " + questionNumber);
 		questionNumberLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		questionNumberLabel.setBounds(40, 34, 247, 14);
