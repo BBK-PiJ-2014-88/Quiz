@@ -10,26 +10,26 @@ import java.rmi.registry.*;
  * registry for clients to call methods on. 
  */
 public class ServerLauncher {
-
+	private Registry reg;
 	public static void main(String[] args) {
 		new ServerLauncher().launch();
 	}
 	public void launch(){
-
 		try {
-			Registry reg = LocateRegistry.createRegistry(1099);
+			reg = LocateRegistry.createRegistry(1099);
 			reg.rebind("quizServer", new QuizServer());
-			System.out.println("Server set up completed.");
+			System.out.println("Quiz Server set up completed.");
 		} 
 		catch (RemoteException e) {
-	        Registry reg;
-			try {
-				reg = LocateRegistry.getRegistry(1099);
-				reg.rebind("quizServer", new QuizServer());
-				System.out.println("Server has already been set up. Port 1099 already in use");
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
+				try {
+					reg = LocateRegistry.getRegistry(1099);
+					reg.rebind("quizServer", new QuizServer());
+					System.out.println("Quiz Server set up completed.");
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+					System.out.println("Server set up failed");
+				}
 		} 
+
 	}
 }
