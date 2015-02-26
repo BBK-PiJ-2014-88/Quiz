@@ -18,8 +18,8 @@ public class HomePageGui {
 	private JFrame frame;
 	private JButton makeQuizButton;
 	private JButton playQuizButton;
-	private JPanel panel;
-	private JLabel label;
+	private JPanel panel; 
+	private JLabel label;  //contains a welcome message
 	private MyImagePanel imagePanel;
 	
 	/**

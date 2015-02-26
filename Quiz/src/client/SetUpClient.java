@@ -18,8 +18,7 @@ public class SetUpClient {
 	 */
 	public void launch(){
 		connectToServer();
-		NamingQuizGui quizNameGui = new NamingQuizGui(this);
-		quizNameGui.launch();
+		new NamingQuizGui(this).launch();
 	}
 	/**
 	 * Creates a Quiz Object with a user supplied name
@@ -44,8 +43,7 @@ public class SetUpClient {
 	 * launches the GUI for a user to enter a  Question
 	 */
 	public void getQuizQuestions(){
-		EnterQuestionFrame enterQuestionGui = new EnterQuestionFrame(this);
-		enterQuestionGui.launch();
+		new EnterQuestionFrame(this).launch();
 	}
 	/**
 	 * @param the question
@@ -55,7 +53,7 @@ public class SetUpClient {
 	 */
 	public void addQuestionToQuiz(String question, String[] answers, int correctAnswer){
 		this.newQuiz.addQuestion(new Question(question, answers, correctAnswer));
-		System.out.println("Successfully added question with question: " + question + " Answers: + " + Arrays.toString(answers) + " Correct answer: " + correctAnswer);
+		System.out.println("Successfully added a Question with question: " + question + " Answers: + " + Arrays.toString(answers) + " Correct answer: " + correctAnswer);
 	}
 	/**
 	 * Locates the Quiz Server object on the registry so methods can be invoked on it

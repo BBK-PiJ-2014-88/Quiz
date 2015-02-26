@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import client.*;
+import client.SetUpClient;
 
 public class EnterQuestionFrame {
 	private SetUpClient client;  //the setUpClient that invoked this frame
@@ -147,7 +147,7 @@ public class EnterQuestionFrame {
 	 * @return boolean : true if answers have been inserted, false otherwise
 	 */
 	public boolean answersInsertedCorrectly(){
-		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField,answer4TextField};
+		JTextField[] answerFields = {answer1TextField, answer2TextField, answer3TextField, answer4TextField};
 		for (JTextField answerBox: answerFields){
 			if (answerBox.getText().length() == 0){
 				return false;
@@ -189,7 +189,7 @@ public class EnterQuestionFrame {
 				return Integer.parseInt(button.getText());
 			}
 		}
-		return Integer.MAX_VALUE; 
+		return Integer.MAX_VALUE; //if there is an error
 	}
 	/*
 	 * If the user selects the Next Question button, the method checks whether the user
