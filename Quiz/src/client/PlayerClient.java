@@ -4,9 +4,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-
 import javax.swing.JOptionPane;
-
 import server.QuizRemoteInterface;
 import gui.*;
 import quiz.*;
