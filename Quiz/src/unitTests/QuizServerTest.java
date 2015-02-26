@@ -55,6 +55,9 @@ public class QuizServerTest {
 		serverTester.addCurrentlyBeingPlayedQuiz(100);
 		serverTester.removeCurrentlyBeingPlayedQuiz(100); //1 player finishes playing
 		assertEquals(false, serverTester.deleteQuiz(100)); //quiz cannot be deleted
+		serverTester.removeCurrentlyBeingPlayedQuiz(100);
+		//the quiz can now be deleted as both players have finished playing
+		assertEquals(true, serverTester.deleteQuiz(100));
 	}
 	
 	//tests whether addHighScore successfully adds a PlayerAttempt to a quiz
@@ -64,5 +67,6 @@ public class QuizServerTest {
 		PlayerAttempt attempt = new PlayerAttempt("Harry");
 		serverTester.addHighScore(attempt, 100);
 		assertEquals(attempt, serverTester.getQuiz(100).getPlayerAttempts().get(0));
+		assertEquals(true, serverTester.deleteQuiz(100)); //delete the quiz at the end to tidy up 
 	}
 }

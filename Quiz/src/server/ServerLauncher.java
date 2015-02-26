@@ -22,7 +22,14 @@ public class ServerLauncher {
 			System.out.println("Server set up completed.");
 		} 
 		catch (RemoteException e) {
-			System.out.println("Server has already been set up. Port 1099 already in use");
+	        Registry reg;
+			try {
+				reg = LocateRegistry.getRegistry(1099);
+				reg.rebind("quizServer", new QuizServer());
+				System.out.println("Server has already been set up. Port 1099 already in use");
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 		} 
 	}
 }
