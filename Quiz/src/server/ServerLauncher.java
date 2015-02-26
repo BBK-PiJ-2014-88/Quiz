@@ -22,7 +22,6 @@ public class ServerLauncher {
 			System.out.println("Server set up completed.");
 		} 
 		catch (RemoteException e) {
-			e.printStackTrace();
 			System.out.println("Server has already been set up. Port 1099 already in use");
 		} 
 	}

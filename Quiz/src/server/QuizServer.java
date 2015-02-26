@@ -18,7 +18,8 @@ import quiz.*;
 public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterface  {
 	
 	private HashMap<Integer, Quiz> quizList = new HashMap<Integer, Quiz>(); //all the quizzes added by users
-	private ArrayList<Integer> quizzesCurrentlyBeingPlayed = new ArrayList<Integer>(); //the quizzes currently being played
+	private ArrayList<Integer> quizzesCurrentlyBeingPlayed = new ArrayList<Integer>(); //the id's of quizzes currently being played
+	
 	/**
 	 * The QuizServer constructor. Reads from a file to get all the quizzes that have been added to the server by users. 
 	 * @throws RemoteException
@@ -27,7 +28,6 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 		super();
 		File storageFile = new File("QuizStorage.txt");
 		if (storageFile.exists()){
-			System.out.println("File exists");
 			try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(storageFile))){
 				quizList = (HashMap<Integer, Quiz>) in.readObject();
 				System.out.println("Read the QuizList from File");
@@ -45,7 +45,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	public boolean addQuiz(Quiz quizToAdd, int id){
 		quizList.put(id, quizToAdd);
 		flush();
-		System.out.println("Added quiz to server");
+		System.out.println("Added quiz" + id + " to server");
 		return true;
 	}
 	 /**
@@ -62,9 +62,6 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 */
 	public boolean deleteQuiz(int id){
 		if (isQuizCurrentlyBeingPlayed(id)){
-			for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-				System.out.println("ids" + ids);
-			}
 			return false;
 		}
 		else{
@@ -79,9 +76,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	 * @return true if the quiz is currently being played, false otherwise
 	 */
 	private boolean isQuizCurrentlyBeingPlayed(Integer id){
-		System.out.println("checking if quiz is being played");
 		for (Integer quizBeingPlayedId : quizzesCurrentlyBeingPlayed){
-			System.out.println("id being played" + quizBeingPlayedId);
 			if (id.equals(quizBeingPlayedId)){
 				return true;
 			}
@@ -132,33 +127,20 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	public void addHighScore(PlayerAttempt highScore, int id){
 		quizList.get(id).addPlayerAttempt(highScore);
 		flush();
-		System.out.println("Added player Attempt");
 	}
 	/**
 	 * Adds the id of a quiz to list of quizzes currently being played
 	 */
 	public void addCurrentlyBeingPlayedQuiz(Integer id){
-		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids before entry " + ids);
-		}
 		this.quizzesCurrentlyBeingPlayed.add((Integer) id);
 		System.out.println("Added quiz + " + id + " to currently being played quizlist");
-		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids after entry " + ids);
-		}
 	}
 	/**
 	 * removes an id for a quiz from the list of quizzes currently being played once a user has finished playing
 	 */
 	public void removeCurrentlyBeingPlayedQuiz(Integer id){
-		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids before removal" + ids);
-		}
 		this.quizzesCurrentlyBeingPlayed.remove((Integer)id);
-		System.out.println("Removed quiz + " + id + " to currently being played quizlist");
-		for (Integer ids: this.quizzesCurrentlyBeingPlayed){
-			System.out.println("ids after removal" + ids);
-		}
+		System.out.println("Removed quiz + " + id + " from currently being played quizlist");
 	}
 	/**
 	 * Writes the QuizList to a file
