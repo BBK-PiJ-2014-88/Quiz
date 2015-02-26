@@ -1,12 +1,9 @@
 package unitTests;
 
 import static org.junit.Assert.*;
-
 import java.rmi.RemoteException;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import server.QuizServer;
 import quiz.*;
 
@@ -37,7 +34,7 @@ public class QuizServerTest {
 	
 	@Test  //tests addQuiz, getQuiz and DeleteQuiz
 	public void testAddGetDeleteQuiz() {
-		int x = serverTester.createQuizId();
+		int x = serverTester.createQuizId(); //test createQuizId
 		serverTester.addQuiz(testerQuiz1, x);
 		assertEquals(testerQuiz1, serverTester.getQuiz(x));
 		assertEquals(serverTester.deleteQuiz(x), true);
@@ -49,15 +46,15 @@ public class QuizServerTest {
 		serverTester.addQuiz(testerQuiz1, 100);
 		serverTester.addCurrentlyBeingPlayedQuiz(100);
 		assertEquals(false, serverTester.deleteQuiz(100));
-		//a quiz can be deleted when it is currently being played
+		//a quiz can be deleted when it is not being played currently
 		serverTester.removeCurrentlyBeingPlayedQuiz(100);
 		assertEquals(true, serverTester.deleteQuiz(100));
 		//if the same quiz is being played by 2 players and 1 player finishes, the quiz should not be able to be deleted as one player is still playing it
 		serverTester.addQuiz(testerQuiz1, 100);
+		serverTester.addCurrentlyBeingPlayedQuiz(100); //2 players playing the quiz
 		serverTester.addCurrentlyBeingPlayedQuiz(100);
-		serverTester.addCurrentlyBeingPlayedQuiz(100);
-		serverTester.removeCurrentlyBeingPlayedQuiz(100);
-		assertEquals(false, serverTester.deleteQuiz(100));
+		serverTester.removeCurrentlyBeingPlayedQuiz(100); //1 player finishes playing
+		assertEquals(false, serverTester.deleteQuiz(100)); //quiz cannot be deleted
 	}
 	
 	//tests whether addHighScore successfully adds a PlayerAttempt to a quiz

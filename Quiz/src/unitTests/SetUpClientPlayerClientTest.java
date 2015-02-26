@@ -26,11 +26,6 @@ public class SetUpClientPlayerClientTest {
 	
 	@Test
 	public void testBothClientsAddAndDelete() throws IllegalArgumentException, IllegalAccessException {
-		//create a quiz
-		Quiz testerQuiz = new Quiz("test quiz");
-		Question question1 = new Question("what is 2+2", new String[]{"1","2","3","4"},3);
-		testerQuiz.addQuestion(question1);
-		
 		setUpClient.createQuiz("test quiz");
 		setUpClient.addQuestionToQuiz("what is 2+2", new String[]{"1","2","3","4"},3);
 		setUpClient.addQuizToServer(); //setUpClient adds a quiz to the server
@@ -68,7 +63,7 @@ public class SetUpClientPlayerClientTest {
 			QuizRemoteInterface serverObject = (QuizRemoteInterface) field.get(playerClient);
 			// use the remoteServerObject to see what the id for the next Quiz will be
 			int idOfNewQuiz = serverObject.createQuizId(); 
-			setUpClient.addQuizToServer(); //add the quiz to the server
+			setUpClient.addQuizToServer(); //add the quiz to the server. The id will be idOfNewQuiz
 			//add the quiz to currentlyBeingPlayedList
 			serverObject.addCurrentlyBeingPlayedQuiz(idOfNewQuiz);
 			//as the quiz is currently being played, it should not be possible to delete it
@@ -89,5 +84,4 @@ public class SetUpClientPlayerClientTest {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -21,7 +21,7 @@ public class QuizTest {
 	}
 
 	@Test
-	public void testAddQuestion() {
+	public void testAddAndGetQuestion() {
 		testerQuiz.addQuestion(question1);
 		testerQuiz.addQuestion(question2);
 		testerQuiz.addQuestion(question3);
@@ -56,7 +56,7 @@ public class QuizTest {
 		testerQuiz.addPlayerAttempt(attempt);
 		testerQuiz.addPlayerAttempt(attempt2);
 		ArrayList<PlayerAttempt> expected = new ArrayList<PlayerAttempt>();
-		expected.add(attempt2);
+		expected.add(attempt2); //PlayerAttempt with highest score comes first
 		expected.add(attempt);
 		assertEquals(expected, testerQuiz.getPlayerAttempts());
 	}
