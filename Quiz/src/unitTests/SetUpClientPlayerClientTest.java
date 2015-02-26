@@ -1,12 +1,16 @@
 package unitTests;
 
 import static org.junit.Assert.*;
+
 import java.lang.reflect.Field;
+import java.rmi.RemoteException;
+
 import org.junit.*;
+
 import client.PlayerClient;
 import client.SetUpClient;
-import server.ServerLauncher;
 import quiz.*;
+import server.*;
 
 public class SetUpClientPlayerClientTest {
 	ServerLauncher launcher;
@@ -24,7 +28,7 @@ public class SetUpClientPlayerClientTest {
 	}
 	
 	@Test
-	public void test() throws IllegalArgumentException, IllegalAccessException {
+	public void testBothClientsAddAndDelete() throws IllegalArgumentException, IllegalAccessException {
 		//create a quiz
 		Quiz testerQuiz = new Quiz("test quiz");
 		Question question1 = new Question("what is 2+2", new String[]{"1","2","3","4"},3);
@@ -33,6 +37,7 @@ public class SetUpClientPlayerClientTest {
 		setUpClient.createQuiz("test quiz");
 		setUpClient.addQuestionToQuiz("what is 2+2", new String[]{"1","2","3","4"},3);
 		setUpClient.addQuizToServer(); //setUpClient adds a quiz to the server
+		
 		//using playerClients doesQuizExist method to check whether the setUpClient successfully added
 		//a quiz to the server. Need the id of the Quiz to check if it exists. This is a private field
 		//in Quiz so i use reflection to obtain it
@@ -47,12 +52,45 @@ public class SetUpClientPlayerClientTest {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
+		 //setUpClient should have successfully added a quiz to the server
 		assertEquals(true, playerClient.doesQuizExist(quizId));
 		//test that the playerClient can successfully delete a quiz from the server
 		assertEquals(true, playerClient.deleteQuiz(quizId));
-		//playerClients doesQuizExist method should not return false
+		//playerClients doesQuizExist method should now return false
 		assertEquals(false, playerClient.doesQuizExist(quizId));
+	}
+	
+	@Test
+	public void testCurrentlyBeingPlayedQuizList(){
+		setUpClient.createQuiz("test quiz");
+		setUpClient.addQuestionToQuiz("what is 2+2", new String[]{"1","2","3","4"},3);
 		
+		 try { //using reflection to get access to private field in playerClient - the remote server object
+			Field field = SetUpClient.class.getDeclaredField("remoteServerObject");
+			field.setAccessible(true);
+			QuizRemoteInterface serverObject = (QuizRemoteInterface) field.get(playerClient);
+			// use the remoteServerObject to see what the id for the next Quiz will be
+			int idOfNewQuiz = serverObject.createQuizId(); 
+			setUpClient.addQuizToServer(); //add the quiz to the server
+			//add the quiz to currentlyBeingPlayedList
+			serverObject.addCurrentlyBeingPlayedQuiz(idOfNewQuiz);
+			//as the quiz is currently being played, it should not be possible to delete it
+			assertEquals(false, playerClient.deleteQuiz(idOfNewQuiz));
+			//remove the quiz from the currentlyBeingPlayed list
+			serverObject.removeCurrentlyBeingPlayedQuiz(idOfNewQuiz);
+			//now it should be possible to delete the quiz
+			assertEquals(true, playerClient.deleteQuiz(idOfNewQuiz));
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
