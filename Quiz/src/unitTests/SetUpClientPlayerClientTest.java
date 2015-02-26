@@ -1,12 +1,9 @@
 package unitTests;
 
 import static org.junit.Assert.*;
-
 import java.lang.reflect.Field;
 import java.rmi.RemoteException;
-
 import org.junit.*;
-
 import client.PlayerClient;
 import client.SetUpClient;
 import quiz.*;
