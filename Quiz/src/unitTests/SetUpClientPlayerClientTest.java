@@ -58,7 +58,7 @@ public class SetUpClientPlayerClientTest {
 		setUpClient.addQuestionToQuiz("what is 2+2", new String[]{"1","2","3","4"},3);
 		
 		 try { //using reflection to get access to private field in playerClient - the remote server object
-			Field field = SetUpClient.class.getDeclaredField("remoteServerObject");
+			Field field = PlayerClient.class.getDeclaredField("remoteServerObject");
 			field.setAccessible(true);
 			QuizRemoteInterface serverObject = (QuizRemoteInterface) field.get(playerClient);
 			// use the remoteServerObject to see what the id for the next Quiz will be

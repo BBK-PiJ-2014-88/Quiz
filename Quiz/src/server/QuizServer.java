@@ -45,7 +45,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	public boolean addQuiz(Quiz quizToAdd, int id){
 		quizList.put(id, quizToAdd);
 		flush();
-		System.out.println("Added quiz" + id + " to server");
+		System.out.println("Added quiz " + id + " to server");
 		return true;
 	}
 	 /**
