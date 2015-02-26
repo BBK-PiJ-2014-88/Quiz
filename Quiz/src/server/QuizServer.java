@@ -110,13 +110,6 @@ public class QuizServer extends UnicastRemoteObject implements QuizRemoteInterfa
 	}
 	
 	/**
-	 * @return - the number of quizzes in the quizList
-	 */
-	public int getNumberOfQuizzes(){
-		return quizList.size();
-	}
-	
-	/**
 	 * Creates a String array where each Quiz in the Quiz Server 
 	 * is represented by a string consisting of its QuizName and QuizId
 	 * It is used by the playerClient to display the available quizzes in a JList
